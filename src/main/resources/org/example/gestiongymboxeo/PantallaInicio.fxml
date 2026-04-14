@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="894.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PantallaInicioController">
+   <children>
+      <AnchorPane prefHeight="894.0" prefWidth="245.0" style="-fx-background-color: #1A1A1A;">
+         <children>
+            <Button fx:id="boxeadoresButton" layoutY="294.0" mnemonicParsing="false" onAction="#irVerBoxeadores" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Boxeadores" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+            <AnchorPane prefHeight="251.0" prefWidth="246.0" style="-fx-background-color: C0392B;">
+               <children>
+                  <ImageView fitHeight="180.0" fitWidth="213.0" layoutX="16.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../IMG/LogoBoxGym.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Button fx:id="entrenamientoButton" layoutY="418.0" mnemonicParsing="false" onAction="#irVerEntrenamientos" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Entrenamientos" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="competicionesButton" layoutY="489.0" mnemonicParsing="false" onAction="#irVerCompeticiones" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Competiciones" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="calendarioButton" layoutY="565.0" mnemonicParsing="false" onAction="#irVerCalendario" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Calendario" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="entrenadoresButton" layoutY="355.0" mnemonicParsing="false" onAction="#irVerEntrenadores" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Entrenadores" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="894.0" prefWidth="867.0" style="-fx-background-color: #2C2C2C;">
+         <children>
+            <Label layoutX="237.0" layoutY="76.0" prefHeight="91.0" prefWidth="392.0" text="CLUB BOXING" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="56.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="490.0" fitWidth="694.0" layoutX="90.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../IMG/FotoInicio.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="101.0" layoutY="720.0" text="No se trata de cuánto golpeas, sino de cuánto aguantas y sigues adelante" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

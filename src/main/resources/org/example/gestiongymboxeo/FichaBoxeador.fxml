@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="894.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FichaBoxeadorController">
+   <children>
+      <AnchorPane prefHeight="894.0" prefWidth="245.0" style="-fx-background-color: #1A1A1A;">
+         <children>
+            <Button fx:id="boxeadoresButton" layoutY="294.0" mnemonicParsing="false" onAction="#irVerBoxeadores" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: #E74C3C;" text="Boxeadores" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+            <AnchorPane prefHeight="251.0" prefWidth="246.0" style="-fx-background-color: C0392B;">
+               <children>
+                  <ImageView fitHeight="180.0" fitWidth="213.0" layoutX="16.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../IMG/LogoBoxGym.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Button fx:id="entrenamientoButton" layoutY="423.0" mnemonicParsing="false" onAction="#irVerEntrenamientos" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Entrenamientos" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="competicionesButton" layoutY="494.0" mnemonicParsing="false" onAction="#irVerCompeticiones" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Competiciones" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="calendarioButton" layoutY="570.0" mnemonicParsing="false" onAction="#irVerCalendario" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Calendario" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="entrenadoresButton" layoutY="362.0" mnemonicParsing="false" onAction="#irVerEntrenadores" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Entrenadores" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="894.0" prefWidth="867.0" style="-fx-background-color: #2C2C2C;">
+         <children>
+            <Label layoutX="353.0" layoutY="26.0" prefHeight="91.0" prefWidth="160.0" text="FICHA" textAlignment="CENTER" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="56.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imagen" fitHeight="281.0" fitWidth="224.0" layoutX="43.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="303.0" layoutY="117.0" prefHeight="49.0" prefWidth="320.0" text="Datos Personales" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="178.0" prefHeight="24.0" prefWidth="71.0" text="Nombre:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="230.0" prefHeight="24.0" prefWidth="71.0" text="Apellidos:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="305.0" layoutY="527.0" prefHeight="24.0" prefWidth="71.0" text="Peso:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="516.0" layoutY="525.0" prefHeight="24.0" prefWidth="25.0" text="KG" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="305.0" layoutY="574.0" prefHeight="24.0" prefWidth="71.0" text="Categoría:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="281.0" prefHeight="24.0" prefWidth="130.0" text="Fecha Nacimiento:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="302.0" layoutY="447.0" prefHeight="49.0" prefWidth="320.0" text="Datos Boxeador" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="305.0" layoutY="626.0" prefHeight="24.0" prefWidth="71.0" text="Genero:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="682.0" prefHeight="24.0" prefWidth="71.0" text="Activo:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="732.0" prefHeight="24.0" prefWidth="71.0" text="Tipo" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="302.0" layoutY="334.0" prefHeight="24.0" prefWidth="130.0" text="DNI:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="302.0" layoutY="391.0" prefHeight="24.0" prefWidth="130.0" text="Telefono:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="botonEntrenamiento" layoutX="550.0" layoutY="816.0" mnemonicParsing="false" onAction="#verEntrenamiento" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Entrenamientos" textFill="WHITESMOKE" />
+            <Button fx:id="botonCompeticiones" layoutX="688.0" layoutY="816.0" mnemonicParsing="false" onAction="#verCompeticiones" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Competiciones" textFill="WHITESMOKE" />
+            <Button fx:id="botonVolver" layoutX="306.0" layoutY="816.0" mnemonicParsing="false" onAction="#volver" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Volver" textFill="WHITESMOKE" />
+            <Button fx:id="botonEditar" layoutX="408.0" layoutY="816.0" mnemonicParsing="false" onAction="#validarEditar" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Editar" textFill="WHITESMOKE" />
+            <TextField fx:id="nombre" editable="false" layoutX="473.0" layoutY="178.0" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: grey;" />
+            <TextField fx:id="apellidos" editable="false" layoutX="473.0" layoutY="230.0" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: grey;" />
+            <TextField fx:id="categoria" editable="false" layoutX="462.0" layoutY="574.0" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: grey;" />
+            <TextField fx:id="genero" editable="false" layoutX="462.0" layoutY="626.0" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: grey;" />
+            <TextField fx:id="tipo" editable="false" layoutX="463.0" layoutY="732.0" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: grey;" />
+            <TextField fx:id="fechaN" editable="false" layoutX="473.0" layoutY="281.0" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: grey;" />
+            <TextField fx:id="dni" editable="false" layoutX="473.0" layoutY="334.0" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: grey;" />
+            <TextField fx:id="telefono" editable="false" layoutX="473.0" layoutY="391.0" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: grey;" />
+            <TextField fx:id="peso" editable="false" layoutX="462.0" layoutY="525.0" prefHeight="25.0" prefWidth="54.0" style="-fx-background-color: grey;" />
+            <TextField fx:id="activo" editable="false" layoutX="462.0" layoutY="682.0" prefHeight="25.0" prefWidth="54.0" style="-fx-background-color: grey;" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
