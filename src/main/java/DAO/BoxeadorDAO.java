@@ -45,7 +45,7 @@ public class BoxeadorDAO {
             boxeadorEditado.setCategoria(boxeador.getCategoria() != null ? boxeador.getCategoria() : boxeadorEditado.getCategoria());
             boxeadorEditado.setGenero(boxeador.getGenero() != null ? boxeador.getGenero() : boxeadorEditado.getGenero());
             boxeadorEditado.setTipoBox(boxeador.getTipoBox() != null ? boxeador.getTipoBox() : boxeadorEditado.getTipoBox());
-            boxeadorEditado.setFechaNacimiento(boxeador.getFechaNacimiento() != null ? boxeador.getFechaNacimiento() : boxeadorEditado.getFechaNacimiento());
+            boxeadorEditado.setFechaNacimiento(String.valueOf(boxeador.getFechaNacimiento() != null ? boxeador.getFechaNacimiento() : boxeadorEditado.getFechaNacimiento()));
             if (boxeador.getActivo() != null)
                 boxeadorEditado.setActivo(boxeador.getActivo());
 

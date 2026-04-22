@@ -20,6 +20,7 @@ public class BoxeoApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Gestion Boxeo");
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 }

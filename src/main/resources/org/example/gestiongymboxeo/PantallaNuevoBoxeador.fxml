@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.ToggleButtonGroup?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -10,145 +11,209 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="894.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PantallaNuevoBoxeadorController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PantallaNuevoBoxeadorController">
    <children>
-      <AnchorPane prefHeight="894.0" prefWidth="245.0" style="-fx-background-color: #1A1A1A;">
+      <VBox spacing="20.0" style="-fx-background-color: #1A1A1A;">
          <children>
-            <Button fx:id="boxeadoresButton" layoutY="294.0" mnemonicParsing="false" onAction="#irVerBoxeadores" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: #E74C3C;" text="Boxeadores" textFill="WHITESMOKE">
-               <font>
-                  <Font name="Bradley Hand ITC" size="28.0" />
-               </font>
-            </Button>
-            <AnchorPane prefHeight="251.0" prefWidth="246.0" style="-fx-background-color: C0392B;">
+            <AnchorPane prefHeight="262.0" prefWidth="255.0" style="-fx-background-color: C0392B;">
                <children>
-                  <ImageView fitHeight="180.0" fitWidth="213.0" layoutX="16.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="161.0" fitWidth="196.0" layoutX="32.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="31.0">
                      <image>
                         <Image url="@../../../IMG/LogoBoxGym.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <Button fx:id="entrenamientoButton" layoutY="423.0" mnemonicParsing="false" onAction="#irVerEntrenamientos" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Entrenamientos" textFill="WHITESMOKE">
+            <Button fx:id="boxeadoresButton" mnemonicParsing="false" onAction="#irVerBoxeadores" prefHeight="61.0" prefWidth="259.0" style="-fx-background-color: transparent;" text="Boxeadores" textFill="WHITESMOKE">
                <font>
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
             </Button>
-            <Button fx:id="competicionesButton" layoutY="494.0" mnemonicParsing="false" onAction="#irVerCompeticiones" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Competiciones" textFill="WHITESMOKE">
+            <Button fx:id="entrenadoresButton" mnemonicParsing="false" onAction="#irVerEntrenadores" prefHeight="61.0" prefWidth="255.0" style="-fx-background-color: transparent;" text="Entrenadores" textFill="WHITESMOKE">
                <font>
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
             </Button>
-            <Button fx:id="calendarioButton" layoutY="570.0" mnemonicParsing="false" onAction="#irVerCalendario" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Calendario" textFill="WHITESMOKE">
+            <Button fx:id="entrenamientoButton" mnemonicParsing="false" onAction="#irVerEntrenamientos" prefHeight="61.0" prefWidth="258.0" style="-fx-background-color: transparent;" text="Entrenamientos" textFill="WHITESMOKE">
                <font>
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
             </Button>
-            <Button fx:id="entrenadoresButton" layoutY="362.0" mnemonicParsing="false" onAction="#irVerEntrenadores" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Entrenadores" textFill="WHITESMOKE">
+            <Button fx:id="competicionesButton" mnemonicParsing="false" onAction="#irVerCompeticiones" prefHeight="61.0" prefWidth="256.0" style="-fx-background-color: transparent;" text="Competiciones" textFill="WHITESMOKE">
                <font>
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
             </Button>
          </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="894.0" prefWidth="867.0" style="-fx-background-color: #2C2C2C;">
+      </VBox>
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="891.0" prefWidth="996.0" spacing="30.0" style="-fx-background-color: #2C2C2C;" HBox.hgrow="ALWAYS">
          <children>
-            <Label layoutX="353.0" layoutY="26.0" prefHeight="91.0" prefWidth="160.0" text="FICHA" textAlignment="CENTER" textFill="WHITESMOKE">
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="62.0" prefWidth="369.0" text="FICHA" textFill="WHITESMOKE" VBox.vgrow="ALWAYS">
                <font>
                   <Font name="Bradley Hand ITC" size="56.0" />
                </font>
             </Label>
-            <ImageView fx:id="imagen" fitHeight="273.0" fitWidth="224.0" layoutX="43.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../IMG/sinfoto.jpeg" />
-               </image></ImageView>
-            <Label layoutX="303.0" layoutY="117.0" prefHeight="49.0" prefWidth="320.0" text="Datos Personales" textFill="WHITE">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="303.0" layoutY="178.0" prefHeight="24.0" prefWidth="71.0" text="Nombre:" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="303.0" layoutY="230.0" prefHeight="24.0" prefWidth="71.0" text="Apellidos:" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="305.0" layoutY="527.0" prefHeight="24.0" prefWidth="71.0" text="Peso:" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="516.0" layoutY="525.0" prefHeight="24.0" prefWidth="25.0" text="KG" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="305.0" layoutY="574.0" prefHeight="24.0" prefWidth="71.0" text="Categoría:" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="303.0" layoutY="281.0" prefHeight="24.0" prefWidth="130.0" text="Fecha Nacimiento:" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="302.0" layoutY="447.0" prefHeight="49.0" prefWidth="320.0" text="Datos Boxeador" textFill="WHITE">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="305.0" layoutY="626.0" prefHeight="24.0" prefWidth="71.0" text="Genero:" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="303.0" layoutY="682.0" prefHeight="24.0" prefWidth="71.0" text="Activo:" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="303.0" layoutY="732.0" prefHeight="24.0" prefWidth="71.0" text="Tipo" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="302.0" layoutY="334.0" prefHeight="24.0" prefWidth="130.0" text="DNI:" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="302.0" layoutY="391.0" prefHeight="24.0" prefWidth="130.0" text="Telefono:" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Button fx:id="botonVolver" layoutX="306.0" layoutY="816.0" mnemonicParsing="false" onAction="#volver" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Volver" textFill="WHITESMOKE" />
-            <TextField fx:id="nombre" editable="false" layoutX="473.0" layoutY="178.0" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: grey;" />
-            <TextField fx:id="apellidos" editable="false" layoutX="473.0" layoutY="230.0" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: grey;" />
-            <TextField fx:id="fechaN" editable="false" layoutX="473.0" layoutY="281.0" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: grey;" />
-            <TextField fx:id="dni" editable="false" layoutX="473.0" layoutY="334.0" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: grey;" />
-            <TextField fx:id="telefono" editable="false" layoutX="473.0" layoutY="391.0" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: grey;" />
-            <TextField fx:id="peso" editable="false" layoutX="462.0" layoutY="525.0" prefHeight="25.0" prefWidth="54.0" style="-fx-background-color: grey;" />
-            <Button fx:id="botonGuardar" layoutX="408.0" layoutY="816.0" mnemonicParsing="false" onAction="#guardar" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Guardar" textFill="WHITESMOKE" />
-            <Button fx:id="botonSeleccionarImg" layoutX="96.0" layoutY="459.0" mnemonicParsing="false" onAction="#seleccionarImagen" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Seleccionar Imagen" textFill="WHITESMOKE" />
-            <RadioButton fx:id="seleccionHombre" layoutX="462.0" layoutY="630.0" mnemonicParsing="false" text="Hombre" textFill="WHITE">
-               <toggleGroup>
-                  <ToggleGroup fx:id="grupoGenero" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="seleccionMujer" layoutX="564.0" layoutY="630.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="59.0" text="Mujer" textFill="WHITE" toggleGroup="$grupoGenero" />
-            <ToggleButtonGroup layoutX="115.0" layoutY="599.0" selectionType="SINGLE" />
-            <ComboBox fx:id="comboCategoría" layoutX="460.0" layoutY="574.0" prefHeight="25.0" prefWidth="224.0" />
-            <ComboBox fx:id="ComboTipo" layoutX="460.0" layoutY="732.0" prefHeight="25.0" prefWidth="224.0" />
-            <ComboBox fx:id="comboActivo" layoutX="460.0" layoutY="682.0" prefHeight="25.0" prefWidth="71.0" />
+            <HBox prefHeight="738.0" prefWidth="956.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="738.0" prefWidth="265.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fx:id="imagen" fitHeight="266.0" fitWidth="268.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../IMG/sinfoto.jpeg" />
+                           </image></ImageView>
+                        <Button fx:id="botonImg" mnemonicParsing="false" onAction="#cambiarImagen" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Cambiar" textFill="WHITESMOKE" />
+                     </children>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="738.0" prefWidth="688.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label prefHeight="49.0" prefWidth="320.0" text="Datos Personales" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <GridPane prefHeight="220.0" prefWidth="618.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="268.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="438.0" minWidth="10.0" prefWidth="420.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="71.0" text="Nombre:" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="nombre" prefHeight="25.0" prefWidth="50.0" GridPane.columnIndex="1" />
+                              <Label prefHeight="24.0" prefWidth="71.0" text="Apellidos:" textFill="WHITE" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="apellidos" prefHeight="25.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label prefHeight="24.0" prefWidth="130.0" text="Fecha Nacimiento:" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="fechaN" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label prefHeight="24.0" prefWidth="130.0" text="DNI:" textFill="WHITE" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="dni" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label prefHeight="24.0" prefWidth="130.0" text="Telefono:" textFill="WHITE" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="telefono" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           </children>
+                        </GridPane>
+                        <Label prefHeight="49.0" prefWidth="320.0" text="Datos Boxeador" textFill="WHITE" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="312.0" prefWidth="688.0" VBox.vgrow="ALWAYS">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="271.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.0" minWidth="10.0" prefWidth="417.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="71.0" text="Peso:" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="24.0" prefWidth="71.0" text="Categoría:" textFill="WHITE" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="24.0" prefWidth="71.0" text="Genero:" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="24.0" prefWidth="71.0" text="Activo:" textFill="WHITE" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="24.0" prefWidth="71.0" text="Tipo" textFill="WHITE" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="24.0" prefWidth="25.0" text="KG" textFill="WHITE" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="peso" prefHeight="25.0" prefWidth="90.0" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="comboCategoría" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="comboActivo" prefHeight="25.0" prefWidth="71.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="ComboTipo" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="65.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <RadioButton fx:id="seleccionHombre" mnemonicParsing="false" text="Hombre" textFill="WHITE">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="grupoGenero" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="seleccionMujer" mnemonicParsing="false" prefHeight="17.0" prefWidth="59.0" text="Mujer" textFill="WHITE">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="grupoGenero" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="688.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="botonVolver" mnemonicParsing="false" onAction="#volver" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Volver" textFill="WHITESMOKE" />
+                              <Button fx:id="botonGuardar" mnemonicParsing="false" onAction="#crearNuevoBoxeador" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Guardar" textFill="WHITESMOKE" />
+                           </children>
+                           <padding>
+                              <Insets left="150.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
-      </AnchorPane>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
    </children>
 </HBox>

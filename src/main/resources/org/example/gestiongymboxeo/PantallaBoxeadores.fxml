@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -11,67 +12,71 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="894.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PantallaBoxeadorController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PantallaBoxeadorController">
    <children>
-      <AnchorPane prefHeight="894.0" prefWidth="245.0" style="-fx-background-color: #1A1A1A;">
+      <VBox spacing="20.0" style="-fx-background-color: #1A1A1A;">
          <children>
-            <Button fx:id="boxeadoresButton" layoutY="294.0" mnemonicParsing="false" onAction="#irVerBoxeadores" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: #E74C3C;" text="Boxeadores" textFill="WHITESMOKE">
-               <font>
-                  <Font name="Bradley Hand ITC" size="28.0" />
-               </font>
-            </Button>
-            <AnchorPane prefHeight="251.0" prefWidth="246.0" style="-fx-background-color: C0392B;">
+            <AnchorPane prefHeight="262.0" prefWidth="255.0" style="-fx-background-color: C0392B;">
                <children>
-                  <ImageView fitHeight="180.0" fitWidth="213.0" layoutX="16.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="161.0" fitWidth="196.0" layoutX="32.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="31.0">
                      <image>
                         <Image url="@../../../IMG/LogoBoxGym.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <Button fx:id="entrenamientoButton" layoutY="428.0" mnemonicParsing="false" onAction="#irVerEntrenamientos" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Entrenamientos" textFill="WHITESMOKE">
+            <Button fx:id="boxeadoresButton1" mnemonicParsing="false" onAction="#irVerBoxeadores" prefHeight="61.0" prefWidth="259.0" style="-fx-background-color: transparent;" text="Boxeadores" textFill="WHITESMOKE">
                <font>
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
             </Button>
-            <Button fx:id="competicionesButton" layoutY="499.0" mnemonicParsing="false" onAction="#irVerCompeticiones" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Competiciones" textFill="WHITESMOKE">
+            <Button fx:id="entrenadoresButton1" mnemonicParsing="false" onAction="#irVerEntrenadores" prefHeight="61.0" prefWidth="255.0" style="-fx-background-color: transparent;" text="Entrenadores" textFill="WHITESMOKE">
                <font>
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
             </Button>
-            <Button fx:id="calendarioButton" layoutY="575.0" mnemonicParsing="false" onAction="#irVerCalendario" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Calendario" textFill="WHITESMOKE">
+            <Button fx:id="entrenamientoButton1" mnemonicParsing="false" onAction="#irVerEntrenamientos" prefHeight="61.0" prefWidth="258.0" style="-fx-background-color: transparent;" text="Entrenamientos" textFill="WHITESMOKE">
                <font>
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
             </Button>
-            <Button fx:id="entrenadoresButton" layoutY="367.0" mnemonicParsing="false" onAction="#irVerEntrenadores" prefHeight="61.0" prefWidth="246.0" style="-fx-background-color: transparent;" text="Entrenadores" textFill="WHITESMOKE">
+            <Button fx:id="competicionesButton1" mnemonicParsing="false" onAction="#irVerCompeticiones" prefHeight="61.0" prefWidth="256.0" style="-fx-background-color: transparent;" text="Competiciones" textFill="WHITESMOKE">
                <font>
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
             </Button>
          </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="894.0" prefWidth="867.0" style="-fx-background-color: #2C2C2C;">
+      </VBox>
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="30.0" style="-fx-background-color: #2C2C2C;" HBox.hgrow="ALWAYS">
          <children>
-            <TabPane layoutX="41.0" layoutY="133.0" prefHeight="698.0" prefWidth="784.0" style="-fx-background-color: #1A1A1A;" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="72.0" prefWidth="785.0" text="Boxeadores" textFill="WHITESMOKE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Bradley Hand ITC" size="56.0" />
+               </font>
+            </Label>
+            <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #1A1A1A;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+               <tabs>
                   <Tab fx:id="etiquetaTodos" text="Todos">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tablaTodos" layoutY="69.0" prefHeight="603.0" prefWidth="784.0">
+                              <TableView fx:id="tablaTodos" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="606.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <columns>
-                                    <TableColumn fx:id="todosNombre" prefWidth="128.0" text="Nombre" />
-                                    <TableColumn fx:id="todosApellidos" prefWidth="139.0" text="Apellidos" />
-                                    <TableColumn fx:id="todosPeso" prefWidth="72.0" text="Peso" />
-                                    <TableColumn fx:id="todosActivo" prefWidth="76.0" text="Activo" />
-                                    <TableColumn fx:id="todosTipo" prefWidth="79.0" text="Tipo" />
-                                    <TableColumn fx:id="todosFechaN" prefWidth="114.0" text="Fecha Nacimiento" />
-                                    <TableColumn fx:id="todosCategoria" minWidth="9.0" prefWidth="68.0" text="Categoria" />
-                                    <TableColumn fx:id="todosSexo" prefWidth="107.0" text="Sexo" />
+                                    <TableColumn fx:id="todosNombre" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="128.0" text="Nombre" />
+                                    <TableColumn fx:id="todosApellidos" maxWidth="1.7976931348623157E308" prefWidth="139.0" text="Apellidos" />
+                                    <TableColumn fx:id="todosPeso" maxWidth="1.7976931348623157E308" prefWidth="72.0" text="Peso" />
+                                    <TableColumn fx:id="todosActivo" maxWidth="1.7976931348623157E308" prefWidth="76.0" text="Activo" />
+                                    <TableColumn fx:id="todosTipo" maxWidth="1.7976931348623157E308" prefWidth="79.0" text="Tipo" />
+                                    <TableColumn fx:id="todosFechaN" maxWidth="1.7976931348623157E308" prefWidth="114.0" text="Fecha Nacimiento" />
+                                    <TableColumn fx:id="todosCategoria" maxWidth="1.7976931348623157E308" minWidth="9.0" prefWidth="68.0" text="Categoria" />
+                                    <TableColumn fx:id="todosSexo" maxWidth="1.7976931348623157E308" prefWidth="107.0" text="Sexo" />
                                  </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                               <TextField fx:id="labelBusquedaTodos" layoutX="14.0" layoutY="27.0" prefHeight="25.0" prefWidth="221.0" />
                               <Button fx:id="botonBuscar" layoutX="253.0" layoutY="27.0" mnemonicParsing="false" onAction="#buscarBoxeador" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Buscar" textFill="WHITESMOKE" />
@@ -81,9 +86,9 @@
                   </Tab>
                   <Tab fx:id="etiquetaCrucero" text="Crucero">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
-                              <TableView fx:id="tablaCrucero" layoutY="69.0" prefHeight="607.0" prefWidth="784.0">
+                              <TableView fx:id="tablaCrucero" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="607.0" prefWidth="784.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <columns>
                                     <TableColumn fx:id="cruceroNombre" prefWidth="128.0" text="Nombre" />
                                     <TableColumn fx:id="cruceroApellidos" prefWidth="139.0" text="Apellidos" />
@@ -94,6 +99,9 @@
                                     <TableColumn fx:id="cruceroCategoria" minWidth="9.0" prefWidth="68.0" text="Categoria" />
                                     <TableColumn fx:id="cruceroSexo" prefWidth="107.0" text="Sexo" />
                                  </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                               <TextField fx:id="labelBusquedaCrucero" layoutX="14.0" layoutY="27.0" prefHeight="25.0" prefWidth="221.0" />
                               <Button fx:id="BuscarC" layoutX="253.0" layoutY="27.0" mnemonicParsing="false" onAction="#buscarBoxeador" style="-fx-background-color: #C0392B;" text="Buscar" textFill="WHITESMOKE" />
@@ -103,9 +111,9 @@
                   </Tab>
                   <Tab fx:id="etiquetaSemipesado" text="Semipesado">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tablaSemipesado" layoutY="69.0" prefHeight="603.0" prefWidth="784.0">
+                              <TableView fx:id="tablaSemipesado" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="603.0" prefWidth="784.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <columns>
                                     <TableColumn fx:id="semipesadoNombre" prefWidth="128.0" text="Nombre" />
                                     <TableColumn fx:id="semipesadoApellidos" prefWidth="139.0" text="Apellidos" />
@@ -116,6 +124,9 @@
                                     <TableColumn fx:id="semipesadoCategoria" minWidth="9.0" prefWidth="68.0" text="Categoria" />
                                     <TableColumn fx:id="semipesadoSexo" prefWidth="107.0" text="Sexo" />
                                  </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                               <TextField fx:id="labelBusquedaSemi" layoutX="14.0" layoutY="27.0" onAction="#buscarBoxeador" prefHeight="25.0" prefWidth="221.0" />
                               <Button fx:id="BuscarSemi" layoutX="253.0" layoutY="27.0" mnemonicParsing="false" onAction="#buscarBoxeador" style="-fx-background-color: #C0392B;" text="Buscar" textFill="WHITESMOKE" />
@@ -125,9 +136,9 @@
                   </Tab>
                   <Tab fx:id="etiquetaMedio" text="Medio">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tablaMedio" layoutY="69.0" prefHeight="603.0" prefWidth="784.0">
+                              <TableView fx:id="tablaMedio" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="603.0" prefWidth="784.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <columns>
                                     <TableColumn fx:id="medioNombre" prefWidth="128.0" text="Nombre" />
                                     <TableColumn fx:id="medioApellidos" prefWidth="139.0" text="Apellidos" />
@@ -138,6 +149,9 @@
                                     <TableColumn fx:id="medioCategoria" minWidth="9.0" prefWidth="68.0" text="Categoria" />
                                     <TableColumn fx:id="medioSexo" prefWidth="107.0" text="Sexo" />
                                  </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                               <TextField fx:id="labelBusquedaMedio" layoutX="14.0" layoutY="27.0" prefHeight="25.0" prefWidth="221.0" />
                               <Button fx:id="buscarMedio" layoutX="253.0" layoutY="27.0" mnemonicParsing="false" onAction="#buscarBoxeador" style="-fx-background-color: #C0392B;" text="Buscar" textFill="WHITESMOKE" />
@@ -147,9 +161,9 @@
                   </Tab>
                   <Tab fx:id="etiquetaWelter" text="Wélter">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tableWelter" layoutY="69.0" prefHeight="603.0" prefWidth="784.0">
+                              <TableView fx:id="tableWelter" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="603.0" prefWidth="784.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <columns>
                                     <TableColumn fx:id="welterNombre" prefWidth="128.0" text="Nombre" />
                                     <TableColumn fx:id="welterApellidos" prefWidth="139.0" text="Apellidos" />
@@ -159,7 +173,11 @@
                                     <TableColumn fx:id="welterFechaN" prefWidth="114.0" text="Fecha Nacimiento" />
                                     <TableColumn fx:id="welterCategoria" minWidth="9.0" prefWidth="68.0" text="Categoria" />
                                     <TableColumn fx:id="welterSexo" prefWidth="107.0" text="Sexo" />
-                                 </columns></TableView>
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
                               <TextField fx:id="labelBusquedaWelter" layoutX="14.0" layoutY="27.0" prefHeight="25.0" prefWidth="221.0" />
                               <Button fx:id="buscarWelter" layoutX="253.0" layoutY="27.0" mnemonicParsing="false" onAction="#buscarBoxeador" style="-fx-background-color: #C0392B;" text="Buscar" textFill="WHITESMOKE" />
                            </children>
@@ -168,9 +186,9 @@
                   </Tab>
                   <Tab fx:id="etiquetaLigero" text="Ligero">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tableLigero" layoutY="69.0" prefHeight="603.0" prefWidth="784.0">
+                              <TableView fx:id="tableLigero" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="603.0" prefWidth="784.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <columns>
                                     <TableColumn fx:id="ligeroNombre" prefWidth="128.0" text="Nombre" />
                                     <TableColumn fx:id="ligeroApellidos" prefWidth="139.0" text="Apellidos" />
@@ -180,7 +198,11 @@
                                     <TableColumn fx:id="ligeroFechaN" prefWidth="114.0" text="Fecha Nacimiento" />
                                     <TableColumn fx:id="ligeroCategoria" minWidth="9.0" prefWidth="68.0" text="Categoria" />
                                     <TableColumn fx:id="ligeroSexo" prefWidth="107.0" text="Sexo" />
-                                 </columns></TableView>
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
                               <TextField fx:id="labelBusquedaLigero" layoutX="14.0" layoutY="27.0" prefHeight="25.0" prefWidth="221.0" />
                               <Button fx:id="buscarLigero" layoutX="253.0" layoutY="27.0" mnemonicParsing="false" onAction="#buscarBoxeador" style="-fx-background-color: #C0392B;" text="Buscar" textFill="WHITESMOKE" />
                            </children>
@@ -189,9 +211,9 @@
                   </Tab>
                   <Tab fx:id="etiquetaPluma" text="Pluma">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tablePluma" layoutY="69.0" prefHeight="603.0" prefWidth="784.0">
+                              <TableView fx:id="tablePluma" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="603.0" prefWidth="784.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <columns>
                                     <TableColumn fx:id="plumaNombre" prefWidth="128.0" text="Nombre" />
                                     <TableColumn fx:id="plumaApellidos" prefWidth="139.0" text="Apellidos" />
@@ -201,7 +223,11 @@
                                     <TableColumn fx:id="plumaFechaN" prefWidth="114.0" text="Fecha Nacimiento" />
                                     <TableColumn fx:id="plumaCategoria" minWidth="9.0" prefWidth="68.0" text="Categoria" />
                                     <TableColumn fx:id="plumaSexo" prefWidth="107.0" text="Sexo" />
-                                 </columns></TableView>
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
                               <TextField fx:id="labelBusquedaPluma" layoutX="14.0" layoutY="27.0" prefHeight="25.0" prefWidth="221.0" />
                               <Button fx:id="buscarPluma" layoutX="253.0" layoutY="27.0" mnemonicParsing="false" onAction="#buscarBoxeador" style="-fx-background-color: #C0392B;" text="Buscar" textFill="WHITESMOKE" />
                            </children>
@@ -210,9 +236,9 @@
                   </Tab>
                   <Tab fx:id="etiquetaGallo" text="Gallo">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tableGallo" layoutY="69.0" prefHeight="603.0" prefWidth="784.0">
+                              <TableView fx:id="tableGallo" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="603.0" prefWidth="784.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <columns>
                                     <TableColumn fx:id="galloNombre" prefWidth="128.0" text="Nombre" />
                                     <TableColumn fx:id="galloApellidos" prefWidth="139.0" text="Apellidos" />
@@ -222,7 +248,11 @@
                                     <TableColumn fx:id="galloFechaN" prefWidth="114.0" text="Fecha Nacimiento" />
                                     <TableColumn fx:id="galloCategoria" minWidth="9.0" prefWidth="68.0" text="Categoria" />
                                     <TableColumn fx:id="galloSexo" prefWidth="107.0" text="Sexo" />
-                                 </columns></TableView>
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
                               <TextField fx:id="labelBusquedaGallo" layoutX="14.0" layoutY="27.0" prefHeight="25.0" prefWidth="221.0" />
                               <Button fx:id="buscarGallo" layoutX="253.0" layoutY="27.0" mnemonicParsing="false" onAction="#buscarBoxeador" style="-fx-background-color: #C0392B;" text="Buscar" textFill="WHITESMOKE" />
                            </children>
@@ -231,9 +261,9 @@
                   </Tab>
                   <Tab fx:id="etiquetaMosca" text="Mosca">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tableMosca" layoutY="69.0" prefHeight="603.0" prefWidth="784.0">
+                              <TableView fx:id="tableMosca" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="603.0" prefWidth="784.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <columns>
                                     <TableColumn fx:id="moscaNombre" prefWidth="128.0" text="Nombre" />
                                     <TableColumn fx:id="moscaApellido" prefWidth="139.0" text="Apellidos" />
@@ -243,7 +273,11 @@
                                     <TableColumn fx:id="moscaFechaN" prefWidth="114.0" text="Fecha Nacimiento" />
                                     <TableColumn fx:id="moscaCategoria" minWidth="9.0" prefWidth="68.0" text="Categoria" />
                                     <TableColumn fx:id="moscaSexo" prefWidth="107.0" text="Sexo" />
-                                 </columns></TableView>
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
                               <TextField fx:id="labelBusquedaMosca" layoutX="14.0" layoutY="27.0" prefHeight="25.0" prefWidth="221.0" />
                               <Button fx:id="buscarMosca" layoutX="253.0" layoutY="27.0" mnemonicParsing="false" onAction="#buscarBoxeador" style="-fx-background-color: #C0392B;" text="Buscar" textFill="WHITESMOKE" />
                            </children>
@@ -252,9 +286,9 @@
                   </Tab>
                   <Tab fx:id="etiquetaPesado" text="Pesado">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="TablePesado" layoutY="69.0" prefHeight="603.0" prefWidth="784.0">
+                              <TableView fx:id="TablePesado" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="603.0" prefWidth="784.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <columns>
                                     <TableColumn fx:id="pesadoNombre" prefWidth="128.0" text="Nombre" />
                                     <TableColumn fx:id="pesadoApellidos" prefWidth="139.0" text="Apellidos" />
@@ -264,20 +298,27 @@
                                     <TableColumn fx:id="pesadoFechaN" prefWidth="114.0" text="Fecha Nacimiento" />
                                     <TableColumn fx:id="pesadoCategoria" minWidth="9.0" prefWidth="68.0" text="Categoria" />
                                     <TableColumn fx:id="pesadoSexo" prefWidth="107.0" text="Sexo" />
-                                 </columns></TableView>
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
                               <TextField fx:id="labelBusquedaPesado" layoutX="14.0" layoutY="27.0" prefHeight="25.0" prefWidth="221.0" />
                               <Button fx:id="buscarPesado" layoutX="253.0" layoutY="27.0" mnemonicParsing="false" onAction="#buscarBoxeador" style="-fx-background-color: #C0392B;" text="Buscar" textFill="WHITESMOKE" />
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-              </tabs>
+               </tabs>
             </TabPane>
-            <Label layoutX="282.0" layoutY="35.0" text="BOXEADORES" textFill="WHITESMOKE">
-               <font>
-                  <Font name="Bradley Hand ITC" size="45.0" />
-               </font></Label>
-            <Button fx:id="botonNuevo" layoutX="774.0" layoutY="846.0" mnemonicParsing="false" onAction="#irNuevoBoxeador" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Nuevo" textFill="WHITESMOKE" />
-         </children></AnchorPane>
+            <Button fx:id="botonNuevo" mnemonicParsing="false" onAction="#irNuevoBoxeador" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Nuevo" textFill="WHITESMOKE" />
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
    </children>
 </HBox>

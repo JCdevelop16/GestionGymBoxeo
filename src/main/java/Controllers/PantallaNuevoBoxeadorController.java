@@ -1,10 +1,22 @@
 package Controllers;
 
+import DAO.BoxeadorDAO;
 import Entidades.Boxeador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import org.example.gestiongymboxeo.BoxeoApplication;
+
+import java.io.File;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 public class PantallaNuevoBoxeadorController {
 
@@ -19,16 +31,13 @@ public class PantallaNuevoBoxeadorController {
     private Button botonGuardar;
 
     @FXML
-    private Button botonSeleccionarImg;
+    private Button botonImg;
 
     @FXML
     private Button botonVolver;
 
     @FXML
     private Button boxeadoresButton;
-
-    @FXML
-    private Button calendarioButton;
 
     @FXML
     private ComboBox<String> comboActivo;
@@ -49,7 +58,7 @@ public class PantallaNuevoBoxeadorController {
     private Button entrenamientoButton;
 
     @FXML
-    private TextField fechaN;
+    private DatePicker fechaN;
 
     @FXML
     private ToggleGroup grupoGenero;
@@ -72,24 +81,72 @@ public class PantallaNuevoBoxeadorController {
     @FXML
     private TextField telefono;
 
+    BoxeadorDAO boxeadorDAO = new BoxeadorDAO();
+    Boxeador nuevoBoxeador;
+    private String nombreImagen = "sinfoto.png";
+
     @FXML
-    void guardar(ActionEvent event) {
+    void cambiarImagen(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg")
+        );
 
-        Boxeador boxeador = new Boxeador();
-        boxeador.setNombre(nombre.getText());
+        File file = fileChooser.showOpenDialog(null);
 
+        if (file != null) {
+            try {
 
+                // 🔥 1. Ruta fija del proyecto (NO depende de Scene Builder ni ejecución)
+                File carpeta = new File(System.getProperty("user.dir"), "IMG");
+
+                if (!carpeta.exists()) {
+                    carpeta.mkdirs();
+                }
+
+                // 🔥 2. Validar nombre (MUY IMPORTANTE)
+                String baseNombre = nombre.getText().trim();
+
+                if (baseNombre.isEmpty()) {
+                    mostrarError("Escribe el nombre antes de seleccionar la imagen");
+                    return;
+                }
+
+                // 🔥 3. Extensión original
+                String extension = file.getName()
+                        .substring(file.getName().lastIndexOf("."));
+
+                nombreImagen = baseNombre + extension;
+
+                // 🔥 4. Destino real
+                File destino = new File(carpeta, nombreImagen);
+
+                // 🔥 5. Copiar imagen
+                Files.copy(file.toPath(),
+                        destino.toPath(),
+                        StandardCopyOption.REPLACE_EXISTING);
+
+                // 🔥 6. Mostrar imagen correctamente
+                imagen.setImage(
+                        new javafx.scene.image.Image(destino.toURI().toString())
+                );
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                mostrarError("Error al guardar la imagen");
+            }
+        }
     }
 
     @FXML
-    void irVerBoxeadores(ActionEvent event) {
-
+    void irVerBoxeadores(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaBoxeadores.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        boxeadoresButton = (Button) event.getSource();
+        Stage stage = (Stage) boxeadoresButton.getScene().getWindow();
+        stage.setScene(scene);
     }
 
-    @FXML
-    void irVerCalendario(ActionEvent event) {
-
-    }
 
     @FXML
     void irVerCompeticiones(ActionEvent event) {
@@ -107,12 +164,127 @@ public class PantallaNuevoBoxeadorController {
     }
 
     @FXML
-    void seleccionarImagen(ActionEvent event) {
+    void crearNuevoBoxeador(ActionEvent event) throws IOException {
+        if (!validarCampos()) return;
 
+        nuevoBoxeador = new Boxeador();
+
+        nuevoBoxeador.setNombre(nombre.getText());
+        nuevoBoxeador.setApellidos(apellidos.getText());
+        nuevoBoxeador.setDni(dni.getText());
+        nuevoBoxeador.setTelefono(telefono.getText());
+        nuevoBoxeador.setPeso(BigDecimal.valueOf(Double.parseDouble(peso.getText())));
+        nuevoBoxeador.setCategoria(comboCategoría.getValue());
+
+        String genero = "";
+        if (seleccionHombre.isSelected()) genero = "Masculino";
+        else if (seleccionMujer.isSelected()) genero = "Femenino";
+
+        nuevoBoxeador.setGenero(genero);
+        nuevoBoxeador.setTipoBox(ComboTipo.getValue());
+        nuevoBoxeador.setFechaNacimiento(String.valueOf(fechaN.getValue()));
+        nuevoBoxeador.setActivo(comboActivo.getValue().equals("Si"));
+
+
+        // 🔥 IMAGEN POR DEFECTO SI NO HAY SELECCIÓN
+        if (nombreImagen == null || nombreImagen.isEmpty()) {
+            nombreImagen = "sinfoto.png"; // asegúrate de tenerla en tu carpeta IMG
+        }
+        nuevoBoxeador.setFotoUrl(nombreImagen);
+
+        boxeadorDAO.crearNuevoBoxeador(nuevoBoxeador);
+
+        irVerBoxeadores(event);
+
+
+    }
+
+    private void mostrarError(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+    private boolean validarCampos() {
+
+        // Nombre y apellidos (solo texto)
+        if (!nombre.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+            mostrarError("Nombre no válido");
+            return false;
+        }
+
+        if (!apellidos.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+            mostrarError("Apellidos no válidos");
+            return false;
+        }
+
+        // DNI (formato español)
+        if (!dni.getText().matches("\\d{8}[A-Za-z]")) {
+            mostrarError("DNI no válido");
+            return false;
+        }
+
+        // Teléfono (9 dígitos)
+        if (!telefono.getText().matches("\\d{9}")) {
+            mostrarError("Teléfono no válido");
+            return false;
+        }
+
+        // Peso (número con 2 decimales)
+        if (!peso.getText().matches("\\d+(\\.\\d{1,2})?")) {
+            mostrarError("Peso no válido");
+            return false;
+        }
+
+        return true;
     }
 
     @FXML
     void volver(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    BoxeoApplication.class.getResource("PantallaBoxeadores.fxml")
+            );
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) botonVolver.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void initialize() {
+
+        comboCategoría.getItems().addAll(
+                "Pesado",
+                "Medio",
+                "Ligero",
+                "Mosca",
+                "Gallo",
+                "Pluma",
+                "Wélter",
+                "Crucero",
+                "Semipesado"
+        );
+
+        comboActivo.getItems().addAll(
+                "Si",
+                "No"
+        );
+
+        ComboTipo.getItems().addAll(
+                "Sin Tipo",
+                "Amateur",
+                "Profesional"
+        );
+
+        seleccionHombre.setToggleGroup(grupoGenero);
+        seleccionMujer.setToggleGroup(grupoGenero);
+
+
 
     }
 
