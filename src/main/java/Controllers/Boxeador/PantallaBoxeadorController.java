@@ -1,17 +1,12 @@
-package Controllers;
+package Controllers.Boxeador;
 
 import DAO.BoxeadorDAO;
 import Entidades.Boxeador;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.fxml.FXML;
@@ -19,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.gestiongymboxeo.BoxeoApplication;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -496,18 +490,21 @@ public class PantallaBoxeadorController {
     }
 
     @FXML
-    void irVerBoxeadores(ActionEvent event) {
-
+    void irVerBoxeadores(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaBoxeadores.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        boxeadoresButton = (Button) event.getSource();
+        Stage stage = (Stage) boxeadoresButton.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     @FXML
-    void irVerCalendario(ActionEvent event) {
-
-    }
-
-    @FXML
-    void irVerCompeticiones(ActionEvent event) {
-
+    void irVerCompeticiones(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaCompeticiones.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        competicionesButton = (Button) event.getSource();
+        Stage stage = (Stage) competicionesButton.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     @FXML
@@ -520,8 +517,12 @@ public class PantallaBoxeadorController {
     }
 
     @FXML
-    void irVerEntrenamientos(ActionEvent event) {
-
+    void irVerEntrenamientos(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaEntrenamientos.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        entrenamientoButton = (Button) event.getSource();
+        Stage stage = (Stage) entrenamientoButton.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     //METODO PARA FILTRA POR TIPO DE BOXEADOR

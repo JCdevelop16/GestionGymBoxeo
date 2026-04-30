@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.Boxeador;
 
 import DAO.BoxeadorDAO;
 import Entidades.Boxeador;

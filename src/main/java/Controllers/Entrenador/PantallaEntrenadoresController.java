@@ -1,7 +1,7 @@
-package Controllers;
+package Controllers.Entrenador;
 
+import Controllers.Boxeador.FichaBoxeadorController;
 import DAO.EntrenadorDAO;
-import Entidades.Boxeador;
 import Entidades.Entrenador;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,10 +24,10 @@ public class PantallaEntrenadoresController {
     private Button botonBuscar;
 
     @FXML
-    private Button boxeadoresButton;
+    private Button botonNuevo;
 
     @FXML
-    private Button calendarioButton;
+    private Button boxeadoresButton;
 
     @FXML
     private Button competicionesButton;
@@ -54,6 +54,12 @@ public class PantallaEntrenadoresController {
     private TableColumn<Entrenador, String> todosNombre;
 
     @FXML
+    private TableColumn<Entrenador, String> todosApellidos;
+
+    @FXML
+    private TableColumn<Entrenador, String> todosDni;
+
+    @FXML
     private TableColumn<Entrenador, String> todosTelefono;
 
     private EntrenadorDAO entrenadorDAO = new EntrenadorDAO();
@@ -68,22 +74,40 @@ public class PantallaEntrenadoresController {
     }
 
     @FXML
-    void irVerCalendario(ActionEvent event) {
+    void irNuevoEntrenador(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaNuevoEntrenador.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        botonNuevo = (Button) event.getSource();
+        Stage stage = (Stage) botonNuevo.getScene().getWindow();
+        stage.setScene(scene);
 
     }
 
     @FXML
-    void irVerCompeticiones(ActionEvent event) {
-
+    void irVerCompeticiones(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaCompeticiones.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        competicionesButton = (Button) event.getSource();
+        Stage stage = (Stage) competicionesButton.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     @FXML
-    void irVerEntrenadores(ActionEvent event) {
-
+    void irVerEntrenadores(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaEntrenadores.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        entrenadoresButton = (Button) event.getSource();
+        Stage stage = (Stage) entrenadoresButton.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     @FXML
-    void irVerEntrenamientos(ActionEvent event) {
+    void irVerEntrenamientos(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaEntrenamientos.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        entrenamientoButton = (Button) event.getSource();
+        Stage stage = (Stage) entrenamientoButton.getScene().getWindow();
+        stage.setScene(scene);
 
     }
 
@@ -118,18 +142,31 @@ public class PantallaEntrenadoresController {
             fila.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && !fila.isEmpty()) {
                     Entrenador seleccionado = fila.getItem();
-//                    verFichaEntrenador(seleccionado);
+                    verFichaEntrenador(seleccionado);
                 }
             });
             return fila;
         });
     }
 
-    //METODO PARA FILTRA POR TIPO DE BOXEADOR
-    private List<Boxeador> filtrar(List<Boxeador> lista, String categoria) {
-        return lista.stream()
-                .filter(b -> b.getCategoria().equalsIgnoreCase(categoria))
-                .toList();
+    private void verFichaEntrenador(Entrenador entrenador){
+
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    BoxeoApplication.class.getResource("FichaEntrenador.fxml")
+            );
+            Scene scene = new Scene(fxmlLoader.load());
+
+            // Pasarle el boxeador al controlador
+            FichaEntrenadorController controller = fxmlLoader.getController();
+            controller.setEntrenador(entrenador);
+            Stage stage = (Stage) tablaTodos.getScene().getWindow();
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -139,6 +176,8 @@ public class PantallaEntrenadoresController {
         todosNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         todosTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         todosEspecialidad.setCellValueFactory(new PropertyValueFactory<>("especialidad"));
+        todosApellidos.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
+        todosDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
 
         // 🔄 CARGA EN SEGUNDO PLANO
         Task<List<Entrenador>> task = new Task<>() {

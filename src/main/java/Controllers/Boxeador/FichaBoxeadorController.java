@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.Boxeador;
 
 import DAO.BoxeadorDAO;
 import Entidades.Boxeador;
@@ -18,8 +18,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -101,7 +99,6 @@ public class FichaBoxeadorController {
 
     BoxeadorDAO boxeadorDAO = new BoxeadorDAO();
     private Boxeador boxeadorActual;
-    private String nombreOriginal;
 
     public void setBoxeador(Boxeador boxeador) {
 
@@ -230,8 +227,6 @@ public class FichaBoxeadorController {
 
         if (botonEditar.getText().equals("Editar")) {
 
-            nombreOriginal = nombre.getText();
-
             activarEdicion(true);
             botonEditar.setText("Guardar");
 
@@ -287,9 +282,9 @@ public class FichaBoxeadorController {
             boxeadorActual.setActivo(activoSeleccionado.equals("Sí"));
 
             // Guardar en BD
-            boxeadorDAO.actualizarBoxeador(nombreOriginal, boxeadorActual);
+            boxeadorDAO.actualizarBoxeador(boxeadorActual);
 
-            System.out.println("Cambios guardados correctamente.");
+
         }
     }
 
@@ -336,10 +331,15 @@ public class FichaBoxeadorController {
     }
 
     @FXML
-    void irVerBoxeadores(ActionEvent event) {
-
+    void irVerBoxeadores(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaBoxeadores.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        boxeadoresButton = (Button) event.getSource();
+        Stage stage = (Stage) boxeadoresButton.getScene().getWindow();
+        stage.setScene(scene);
     }
 
+    //NO SE PONE NADA PORQUE SOLO SE PUEDE VOLVER PARA ATRAS
     @FXML
     void irVerCompeticiones(ActionEvent event) {
 
@@ -351,37 +351,14 @@ public class FichaBoxeadorController {
     }
 
     @FXML
-    void verCompeticiones(ActionEvent event) {
-
-    }
-
-    @FXML
-    void verEntrenamiento(ActionEvent event) {
-
-    }
-
-    @FXML
     void irVerEntrenadores(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaEntrenadores.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        entrenadoresButton = (Button) event.getSource();
-        Stage stage = (Stage) entrenadoresButton.getScene().getWindow();
-        stage.setScene(scene);
+
     }
 
     @FXML
-    void volver(ActionEvent event) {
+    void volver(ActionEvent event) throws IOException {
 
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
-                    BoxeoApplication.class.getResource("PantallaBoxeadores.fxml")
-            );
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = (Stage) botonVolver.getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        irVerBoxeadores(event);
 
     }
 
@@ -401,30 +378,30 @@ public class FichaBoxeadorController {
 
             try {
 
-                // 🔥 1. Carpeta real del proyecto (NO resources)
+                //Carpeta real del proyecto
                 File carpeta = new File(System.getProperty("user.dir"), "IMG");
 
                 if (!carpeta.exists()) {
                     carpeta.mkdirs();
                 }
 
-                // 🔥 2. Nombre seguro (mejor que nombre directo)
+                //Nombre seguro
                 String nombreArchivo = boxeadorActual.getId()
                         + ".jpeg"; // o .jpg según prefieras
 
                 File destino = new File(carpeta, nombreArchivo);
 
-                // 🔥 3. Copiar y sobrescribir
+                //Copiar y sobrescribir
                 Files.copy(
                         file.toPath(),
                         destino.toPath(),
                         StandardCopyOption.REPLACE_EXISTING
                 );
 
-                // 🔥 4. Guardar en BD
+                //Guardar en BD
                 boxeadorActual.setFotoUrl(nombreArchivo);
 
-                // 🔥 5. Mostrar imagen correctamente
+                //Mostrar imagen correctamente
                 imagen.setImage(
                         new javafx.scene.image.Image(destino.toURI().toString())
                 );

@@ -19,8 +19,8 @@ public class BoxeoApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaInicio.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Gestion Boxeo");
-        stage.setScene(scene);
         stage.setMaximized(true);
+        stage.setScene(scene);
         stage.show();
     }
 }

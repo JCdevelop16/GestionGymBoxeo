@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PantallaBoxeadorController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Boxeador.PantallaBoxeadorController">
    <children>
       <VBox spacing="20.0" style="-fx-background-color: #1A1A1A;">
          <children>
@@ -28,7 +28,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Button fx:id="boxeadoresButton1" mnemonicParsing="false" onAction="#irVerBoxeadores" prefHeight="61.0" prefWidth="259.0" style="-fx-background-color: transparent;" text="Boxeadores" textFill="WHITESMOKE">
+            <Button fx:id="boxeadoresButton1" mnemonicParsing="false" onAction="#irVerBoxeadores" prefHeight="61.0" prefWidth="259.0" style="-fx-background-color: #C0392B;" text="Boxeadores" textFill="WHITESMOKE">
                <font>
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
@@ -65,14 +65,14 @@
                            <children>
                               <TableView fx:id="tablaTodos" layoutY="69.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="606.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <columns>
-                                    <TableColumn fx:id="todosNombre" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="128.0" text="Nombre" />
-                                    <TableColumn fx:id="todosApellidos" maxWidth="1.7976931348623157E308" prefWidth="139.0" text="Apellidos" />
-                                    <TableColumn fx:id="todosPeso" maxWidth="1.7976931348623157E308" prefWidth="72.0" text="Peso" />
-                                    <TableColumn fx:id="todosActivo" maxWidth="1.7976931348623157E308" prefWidth="76.0" text="Activo" />
-                                    <TableColumn fx:id="todosTipo" maxWidth="1.7976931348623157E308" prefWidth="79.0" text="Tipo" />
-                                    <TableColumn fx:id="todosFechaN" maxWidth="1.7976931348623157E308" prefWidth="114.0" text="Fecha Nacimiento" />
-                                    <TableColumn fx:id="todosCategoria" maxWidth="1.7976931348623157E308" minWidth="9.0" prefWidth="68.0" text="Categoria" />
-                                    <TableColumn fx:id="todosSexo" maxWidth="1.7976931348623157E308" prefWidth="107.0" text="Sexo" />
+                                    <TableColumn fx:id="todosNombre" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="128.0" style="-fx-alignment: center;" text="Nombre" />
+                                    <TableColumn fx:id="todosApellidos" maxWidth="1.7976931348623157E308" prefWidth="139.0" style="-fx-alignment: center;" text="Apellidos" />
+                                    <TableColumn fx:id="todosPeso" maxWidth="1.7976931348623157E308" prefWidth="72.0" style="-fx-alignment: center;" text="Peso(KG)" />
+                                    <TableColumn fx:id="todosActivo" maxWidth="1.7976931348623157E308" prefWidth="76.0" style="-fx-alignment: center;" text="Activo" />
+                                    <TableColumn fx:id="todosTipo" maxWidth="1.7976931348623157E308" prefWidth="79.0" style="-fx-alignment: center;" text="Tipo" />
+                                    <TableColumn fx:id="todosFechaN" maxWidth="1.7976931348623157E308" prefWidth="114.0" style="-fx-alignment: center;" text="Fecha Nacimiento" />
+                                    <TableColumn fx:id="todosCategoria" maxWidth="1.7976931348623157E308" minWidth="9.0" prefWidth="68.0" style="-fx-alignment: center;" text="Categoria" />
+                                    <TableColumn fx:id="todosSexo" maxWidth="1.7976931348623157E308" prefWidth="107.0" style="-fx-alignment: center;" text="Sexo" />
                                  </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

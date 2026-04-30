@@ -41,7 +41,7 @@ public class Boxeador {
     private String telefono;
 
     @Nationalized
-    @Column(name = "foto_url", nullable = false, length = 50)
+    @Column(name = "foto_url", length = 50)
     private String fotoUrl;
 
     @Column(name = "activo", nullable = false)
@@ -159,6 +159,11 @@ public class Boxeador {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellidos;
     }
 
 }

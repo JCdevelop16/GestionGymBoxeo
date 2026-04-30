@@ -7,10 +7,10 @@ import jakarta.persistence.*;
 public class AsistenciaEntreno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_asistencia", nullable = false)
+    @Column(name = "id_asistencia")
     private Integer id;
 
-    @Column(name = "estado", nullable = false)
+    @Column(name = "estado")
     private Boolean estado;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

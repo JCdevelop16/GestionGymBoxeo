@@ -4,6 +4,7 @@ import Entidades.Boxeador;
 import jakarta.persistence.*;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BoxeadorDAO {
@@ -11,6 +12,14 @@ public class BoxeadorDAO {
     public List<Boxeador> listarBoxeadores() {
         EntityManager em = JPAUtil.getEntityManager();
         List<Boxeador> lista = em.createQuery("select b from Boxeador b", Boxeador.class)
+                .getResultList();
+        em.close();
+        return lista;
+    }
+
+    public List<Boxeador> listarBoxeadoresCompetidores() {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<Boxeador> lista = em.createQuery("SELECT b FROM Boxeador b WHERE b.tipoBox IN ('Profesional', 'Amateur')", Boxeador.class)
                 .getResultList();
         em.close();
         return lista;
@@ -29,32 +38,12 @@ public class BoxeadorDAO {
         }
     }
 
-    public void actualizarBoxeador(String nombre, Boxeador boxeador) {
+    public void actualizarBoxeador(Boxeador boxeador) {
         EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            Boxeador boxeadorEditado = (Boxeador) em.createQuery(
-                            "select b from Boxeador b where b.nombre = :nombre")
-                    .setParameter("nombre", nombre)
-                    .getSingleResult();
-
-            boxeadorEditado.setNombre(boxeador.getNombre() != null ? boxeador.getNombre() : boxeadorEditado.getNombre());
-            boxeadorEditado.setApellidos(boxeador.getApellidos() != null ? boxeador.getApellidos() : boxeadorEditado.getApellidos());
-            boxeadorEditado.setDni(boxeador.getDni() != null ? boxeador.getDni() : boxeadorEditado.getDni());
-            boxeadorEditado.setTelefono(boxeador.getTelefono() != null ? boxeador.getTelefono() : boxeadorEditado.getTelefono());
-            boxeadorEditado.setPeso(boxeador.getPeso() != null ? boxeador.getPeso() : boxeadorEditado.getPeso());
-            boxeadorEditado.setCategoria(boxeador.getCategoria() != null ? boxeador.getCategoria() : boxeadorEditado.getCategoria());
-            boxeadorEditado.setGenero(boxeador.getGenero() != null ? boxeador.getGenero() : boxeadorEditado.getGenero());
-            boxeadorEditado.setTipoBox(boxeador.getTipoBox() != null ? boxeador.getTipoBox() : boxeadorEditado.getTipoBox());
-            boxeadorEditado.setFechaNacimiento(String.valueOf(boxeador.getFechaNacimiento() != null ? boxeador.getFechaNacimiento() : boxeadorEditado.getFechaNacimiento()));
-            if (boxeador.getActivo() != null)
-                boxeadorEditado.setActivo(boxeador.getActivo());
-
-            em.clear(); // ← limpia todos los objetos del contexto
-            em.merge(boxeadorEditado); // ← re-adjunta solo el que queremos guardar
-
-            EntityTransaction tx = em.getTransaction();
             tx.begin();
-            em.merge(boxeadorEditado);
+            em.merge(boxeador);
             tx.commit();
 
         } catch (Exception e) {

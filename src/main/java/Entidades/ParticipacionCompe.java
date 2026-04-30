@@ -23,6 +23,9 @@ public class ParticipacionCompe {
     @JoinColumn(name = "id_competicion", nullable = false)
     private Competicion idCompeticion;
 
+    @Column(name = "confirmado")
+    private Boolean confirmado;
+
     public Integer getId() {
         return id;
     }
@@ -54,5 +57,8 @@ public class ParticipacionCompe {
     public void setIdCompeticion(Competicion idCompeticion) {
         this.idCompeticion = idCompeticion;
     }
+
+    public Boolean getConfirmado() { return confirmado; }
+    public void setConfirmado(Boolean confirmado) { this.confirmado = confirmado; }
 
 }

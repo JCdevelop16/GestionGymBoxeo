@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PantallaNuevoBoxeadorController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Boxeador.PantallaNuevoBoxeadorController">
    <children>
       <VBox spacing="20.0" style="-fx-background-color: #1A1A1A;">
          <children>
@@ -31,7 +31,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Button fx:id="boxeadoresButton" mnemonicParsing="false" onAction="#irVerBoxeadores" prefHeight="61.0" prefWidth="259.0" style="-fx-background-color: transparent;" text="Boxeadores" textFill="WHITESMOKE">
+            <Button fx:id="boxeadoresButton" mnemonicParsing="false" onAction="#irVerBoxeadores" prefHeight="61.0" prefWidth="259.0" style="-fx-background-color: #C0392B;" text="Boxeadores" textFill="WHITESMOKE">
                <font>
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
@@ -99,13 +99,19 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="nombre" prefHeight="25.0" prefWidth="50.0" GridPane.columnIndex="1" />
+                              <TextField fx:id="nombre" prefHeight="25.0" prefWidth="50.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="80.0" />
+                                 </GridPane.margin></TextField>
                               <Label prefHeight="24.0" prefWidth="71.0" text="Apellidos:" textFill="WHITE" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="apellidos" prefHeight="25.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="apellidos" prefHeight="25.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="80.0" />
+                                 </GridPane.margin></TextField>
                               <Label prefHeight="24.0" prefWidth="130.0" text="Fecha Nacimiento:" textFill="WHITE" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="15.0" />
@@ -117,13 +123,19 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="dni" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="dni" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets right="80.0" />
+                                 </GridPane.margin></TextField>
                               <Label prefHeight="24.0" prefWidth="130.0" text="Telefono:" textFill="WHITE" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="telefono" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="telefono" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets right="80.0" />
+                                 </GridPane.margin></TextField>
                            </children>
                         </GridPane>
                         <Label prefHeight="49.0" prefWidth="320.0" text="Datos Boxeador" textFill="WHITE" VBox.vgrow="ALWAYS">
@@ -174,7 +186,10 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="peso" prefHeight="25.0" prefWidth="90.0" GridPane.columnIndex="1" />
+                              <TextField fx:id="peso" prefHeight="25.0" prefWidth="90.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="350.0" />
+                                 </GridPane.margin></TextField>
                               <ComboBox fx:id="comboCategoría" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <ComboBox fx:id="comboActivo" prefHeight="25.0" prefWidth="71.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <ComboBox fx:id="ComboTipo" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -192,6 +207,14 @@
                                     </RadioButton>
                                  </children>
                               </HBox>
+                              <Label text="KG" textFill="WHITE" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="65.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </GridPane>
                         <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="688.0" spacing="30.0" VBox.vgrow="ALWAYS">
