@@ -76,4 +76,22 @@ public class BoxeadorDAO {
 
     }
 
+    public void eliminarBoxeador(Boxeador boxeador) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            Boxeador b = em.find(Boxeador.class, boxeador.getId());
+            if (b != null) {
+                em.remove(b);
+            }
+            tx.commit();
+        } catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            em.close();
+        }
+    }
+
 }

@@ -2,8 +2,10 @@ package Controllers.Entrenamiento;
 
 import DAO.EntrenamientosDAO;
 import Entidades.TablaEntrenamientos;
+import Service.FechaService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -72,9 +74,65 @@ public class PantallaEntrenamientosController {
 
     EntrenamientosDAO entrenamientosDAO = new EntrenamientosDAO();
 
+    private final java.util.Map<TableView<TablaEntrenamientos>, ObservableList<TablaEntrenamientos>> listaOriginal = new java.util.HashMap<>();
+
     @FXML
     void buscarEntrenamientos(ActionEvent event) {
+        buscarEnTabla(labelBusquedaTodos, tablaTodos);
+    }
 
+    private void buscarEnTabla(TextField campo, TableView<TablaEntrenamientos> tabla) {
+
+        if (!listaOriginal.containsKey(tabla)) {
+            listaOriginal.put(tabla, FXCollections.observableArrayList(tabla.getItems()));
+        }
+
+        String texto = campo.getText().trim().toLowerCase();
+
+        if (texto.isEmpty()) {
+            tabla.setItems(FXCollections.observableArrayList(listaOriginal.get(tabla)));
+            return;
+        }
+
+        ObservableList<TablaEntrenamientos> filtrados = listaOriginal.get(tabla).stream()
+                .filter(ent -> ent.getBoxeadorCompleto().toLowerCase().contains(texto)
+                        || ent.getEntrenadorCompleto().toLowerCase().contains(texto)
+                        || ent.getLugar().toLowerCase().contains(texto)
+                        || ent.getTipo().toLowerCase().contains(texto))
+                .collect(java.util.stream.Collectors.toCollection(FXCollections::observableArrayList));
+
+        tabla.setItems(filtrados);
+    }
+
+    private void agregarDobleClick(TableView<TablaEntrenamientos> tabla) {
+        tabla.setRowFactory(tv -> {
+            TableRow<TablaEntrenamientos> fila = new TableRow<>();
+            fila.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !fila.isEmpty()) {
+                    TablaEntrenamientos entrenamientoSeleccionado = fila.getItem();
+                    irFichaEntrenamiento(entrenamientoSeleccionado);
+                }
+            });
+            return fila;
+        });
+    }
+
+    private void irFichaEntrenamiento(TablaEntrenamientos tabEntreno) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    BoxeoApplication.class.getResource("FichaEntrenamiento.fxml")
+            );
+            Scene scene = new Scene(fxmlLoader.load());
+
+            // Pasarle el boxeador al controlador
+            FichaEntrenamientosController controller = fxmlLoader.getController();
+            controller.setEntrenamiento(tabEntreno);
+            Stage stage = (Stage) tablaTodos.getScene().getWindow();
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -148,6 +206,7 @@ public class PantallaEntrenamientosController {
 
             return new SimpleStringProperty(texto);
         });
+        FechaService.aplicarFormatoFecha(todosFecha);
 
         // 🔄 CARGA EN SEGUNDO PLANO
         Task<List<TablaEntrenamientos>> task = new Task<>() {
@@ -160,13 +219,14 @@ public class PantallaEntrenamientosController {
         task.setOnSucceeded(e -> {
             List<TablaEntrenamientos> lista = task.getValue();
             tablaTodos.setItems(FXCollections.observableArrayList(lista));
+            labelBusquedaTodos.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaTodos, tablaTodos));
         });
 
         task.setOnFailed(e -> {
             task.getException().printStackTrace();
         });
 
-        //agregarDobleClick(tablaTodos);
+        agregarDobleClick(tablaTodos);
 
         new Thread(task).start();
 

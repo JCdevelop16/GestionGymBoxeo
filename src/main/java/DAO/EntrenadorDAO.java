@@ -51,4 +51,22 @@ public class EntrenadorDAO {
 
     }
 
+    public void eliminarEntrenador(Entrenador entrenador) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            Entrenador e = em.find(Entrenador.class, entrenador.getId());
+            if (e != null) {
+                em.remove(e);
+            }
+            tx.commit();
+        } catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            em.close();
+        }
+    }
+
 }

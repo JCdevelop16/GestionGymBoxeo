@@ -17,13 +17,16 @@ public class TablaEntrenamientos {
     private String nombreBoxeador;
     private String apellidosBoxeador;
     private String apellidosEntrenador;
+    private int idEntrenador;
+    private int idBoxeador;
 
     public TablaEntrenamientos(){}
 
     public  TablaEntrenamientos(String fecha, String tipo,
                                 LocalTime horaInicio, LocalTime horaFinal, String lugar,
                                 String nombreEntrenador, String nombreBoxeador,
-                                String apellidosBoxeador, String apellidosEntrenador, Boolean estadoAsistencia) {
+                                String apellidosBoxeador, String apellidosEntrenador, Boolean estadoAsistencia,
+                                int idEntrenador, int idBoxeador) {
 
         this.fecha = fecha;
         this.tipo = tipo;
@@ -35,6 +38,8 @@ public class TablaEntrenamientos {
         this.apellidosBoxeador = apellidosBoxeador;
         this.apellidosEntrenador = apellidosEntrenador;
         this.estadoAsistencia = estadoAsistencia;
+        this.idBoxeador = idBoxeador;
+        this.idEntrenador = idEntrenador;
     }
 
     public String getFecha() {
@@ -124,6 +129,22 @@ public class TablaEntrenamientos {
 
     public void setApellidosEntrenador(String apellidosEntrenador) {
         this.apellidosEntrenador = apellidosEntrenador;
+    }
+
+    public int getIdEntrenador() {
+        return idEntrenador;
+    }
+
+    public void setIdEntrenador(int idEntrenador) {
+        this.idEntrenador = idEntrenador;
+    }
+
+    public int getIdBoxeador() {
+        return idBoxeador;
+    }
+
+    public void setIdBoxeador(int idBoxeador) {
+        this.idBoxeador = idBoxeador;
     }
 
     // 🔧 Método auxiliar

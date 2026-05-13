@@ -16,9 +16,6 @@ public class PantallaInicioController {
     private Button boxeadoresButton;
 
     @FXML
-    private Button calendarioButton;
-
-    @FXML
     private Button competicionesButton;
 
     @FXML

@@ -2,6 +2,7 @@ package Controllers.Boxeador;
 
 import DAO.BoxeadorDAO;
 import Entidades.Boxeador;
+import Service.FechaService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -403,6 +404,8 @@ public class PantallaBoxeadorController {
 
     BoxeadorDAO boxeadorDAO = new BoxeadorDAO();
 
+    private final java.util.Map<TableView<Boxeador>, ObservableList<Boxeador>> listaOriginal = new java.util.HashMap<>();
+
     @FXML
     void buscarBoxeador(ActionEvent event) {
 
@@ -432,21 +435,27 @@ public class PantallaBoxeadorController {
 
     }
 
-    private  void buscarEnTabla (TextField campo, TableView<Boxeador> tabla){
+    private void buscarEnTabla(TextField campo, TableView<Boxeador> tabla) {
+
+        // Guarda la lista original la primera vez
+        if (!listaOriginal.containsKey(tabla)) {
+            listaOriginal.put(tabla, FXCollections.observableArrayList(tabla.getItems()));
+        }
 
         String texto = campo.getText().trim().toLowerCase();
-        ObservableList<Boxeador> lista = tabla.getItems();
 
-        if(texto.isEmpty())return;
+        if (texto.isEmpty()) {
+            // Restaura la lista completa si el campo está vacío
+            tabla.setItems(FXCollections.observableArrayList(listaOriginal.get(tabla)));
+            return;
+        }
 
-        lista.stream()
+        ObservableList<Boxeador> filtrados = listaOriginal.get(tabla).stream()
                 .filter(box -> box.getNombre().toLowerCase().contains(texto)
-                || box.getApellidos().toLowerCase().contains(texto))
-                .findFirst()
-                .ifPresent(box ->{
-                    tabla.getSelectionModel().select(box);
-                    tabla.scrollTo(box);
-                });
+                        || box.getApellidos().toLowerCase().contains(texto))
+                .collect(java.util.stream.Collectors.toCollection(FXCollections::observableArrayList));
+
+        tabla.setItems(filtrados);
     }
 
     private void agregarDobleClick(TableView<Boxeador> tabla) {
@@ -469,7 +478,6 @@ public class PantallaBoxeadorController {
             );
             Scene scene = new Scene(fxmlLoader.load());
 
-            // Pasarle el boxeador al controlador
             FichaBoxeadorController controller = fxmlLoader.getController();
             controller.setBoxeador(boxeador);
             Stage stage = (Stage) tablaTodos.getScene().getWindow();
@@ -525,11 +533,31 @@ public class PantallaBoxeadorController {
         stage.setScene(scene);
     }
 
-    //METODO PARA FILTRA POR TIPO DE BOXEADOR
     private List<Boxeador> filtrar(List<Boxeador> lista, String categoria) {
         return lista.stream()
                 .filter(b -> b.getCategoria().equalsIgnoreCase(categoria))
                 .toList();
+    }
+
+    private void aplicarColorActivo(TableColumn<Boxeador, String> columna) {
+        columna.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(
+                        cellData.getValue().getActivo() ? "Sí" : "No"
+                )
+        );
+        columna.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    getTableRow().setStyle("");
+                } else {
+                    setText(item);
+                    getTableRow().setStyle(item.equals("No") ? "-fx-background-color: #ffcccc;" : "");
+                }
+            }
+        });
     }
 
     @FXML
@@ -625,6 +653,30 @@ public class PantallaBoxeadorController {
         pesadoCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
         pesadoSexo.setCellValueFactory(new PropertyValueFactory<>("genero"));
 
+        FechaService.aplicarFormatoFecha(todosFechaN);
+        FechaService.aplicarFormatoFecha(cruceroFechaN);
+        FechaService.aplicarFormatoFecha(semipesadoFechaN);
+        FechaService.aplicarFormatoFecha(medioFechaN);
+        FechaService.aplicarFormatoFecha(welterFechaN);
+        FechaService.aplicarFormatoFecha(ligeroFechaN);
+        FechaService.aplicarFormatoFecha(plumaFechaN);
+        FechaService.aplicarFormatoFecha(galloFechaN);
+        FechaService.aplicarFormatoFecha(moscaFechaN);
+        FechaService.aplicarFormatoFecha(pesadoFechaN);
+
+        aplicarColorActivo(todosActivo);
+        aplicarColorActivo(cruceroActivo);
+        aplicarColorActivo(semiPesadoActivo);
+        aplicarColorActivo(medioActivo);
+        aplicarColorActivo(welterActivo);
+        aplicarColorActivo(ligeroActivo);
+        aplicarColorActivo(plumaActivo);
+        aplicarColorActivo(galloActivo);
+        aplicarColorActivo(moscaActivo);
+        aplicarColorActivo(pesadoActivo);
+
+
+
         Task<List<Boxeador>> task = new Task<>() {
             @Override
             protected List<Boxeador> call() {
@@ -636,52 +688,43 @@ public class PantallaBoxeadorController {
 
             List<Boxeador> todos = task.getValue();
 
-            // TABLA TODOS
             tablaTodos.setItems(FXCollections.observableArrayList(todos));
-
-            // TABLA CRUCERO
             tablaCrucero.setItems(FXCollections.observableArrayList(
                     filtrar(todos, "crucero")));
-
-            // TABLA SEMIPESADO
             tablaSemipesado.setItems(FXCollections.observableArrayList(
                     filtrar(todos, "semipesado")));
-
-            // TABLA MEDIO
             tablaMedio.setItems(FXCollections.observableArrayList(
                     filtrar(todos, "medio")
             ));
-
-            // TABLA WELTER
             tableWelter.setItems(FXCollections.observableArrayList(
                     filtrar(todos, "wélter")
             ));
-
-            // TABLA LIGERO
             tableLigero.setItems(FXCollections.observableArrayList(
                     filtrar(todos, "ligero")
             ));
-
-            // TABLA PLUMA
             tablePluma.setItems(FXCollections.observableArrayList(
                     filtrar(todos, "pluma")
             ));
-
-            // TABLA GALLO
             tableGallo.setItems(FXCollections.observableArrayList(
                     filtrar(todos, "gallo")
             ));
-
-            // TABLA MOSCA
             tableMosca.setItems(FXCollections.observableArrayList(
                     filtrar(todos, "mosca")
             ));
-
-            // TABLA PESADO
             TablePesado.setItems(FXCollections.observableArrayList(
                     filtrar(todos, "pesado")
             ));
 
+            labelBusquedaTodos.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaTodos, tablaTodos));
+            labelBusquedaPesado.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaPesado, TablePesado));
+            labelBusquedaSemi.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaSemi, tablaSemipesado));
+            labelBusquedaCrucero.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaCrucero, tablaCrucero));
+            labelBusquedaMedio.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaMedio, tablaMedio));
+            labelBusquedaWelter.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaWelter, tableWelter));
+            labelBusquedaLigero.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaLigero, tableLigero));
+            labelBusquedaPluma.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaPluma, tablePluma));
+            labelBusquedaGallo.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaGallo, tableGallo));
+            labelBusquedaMosca.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaMosca, tableMosca));
 
         });
 

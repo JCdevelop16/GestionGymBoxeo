@@ -64,6 +64,8 @@ public class PantallaEntrenadoresController {
 
     private EntrenadorDAO entrenadorDAO = new EntrenadorDAO();
 
+    private final java.util.Map<TableView<Entrenador>, ObservableList<Entrenador>> listaOriginal = new java.util.HashMap<>();
+
     @FXML
     void irVerBoxeadores(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaBoxeadores.fxml"));
@@ -116,26 +118,28 @@ public class PantallaEntrenadoresController {
         buscarEnTabla(labelBusquedaTodos, tablaTodos);
     }
 
-    // 🔍 BUSCADOR
     private void buscarEnTabla(TextField campo, TableView<Entrenador> tabla) {
 
+        if (!listaOriginal.containsKey(tabla)) {
+            listaOriginal.put(tabla, FXCollections.observableArrayList(tabla.getItems()));
+        }
+
         String texto = campo.getText().trim().toLowerCase();
-        ObservableList<Entrenador> lista = tabla.getItems();
 
-        if (texto.isEmpty()) return;
+        if (texto.isEmpty()) {
+            tabla.setItems(FXCollections.observableArrayList(listaOriginal.get(tabla)));
+            return;
+        }
 
-        lista.stream()
+        ObservableList<Entrenador> filtrados = listaOriginal.get(tabla).stream()
                 .filter(ent -> ent.getNombre().toLowerCase().contains(texto)
-                        || ent.getTelefono().toLowerCase().contains(texto)
+                        || ent.getApellidos().toLowerCase().contains(texto)
                         || ent.getEspecialidad().toLowerCase().contains(texto))
-                .findFirst()
-                .ifPresent(ent -> {
-                    tabla.getSelectionModel().select(ent);
-                    tabla.scrollTo(ent);
-                });
+                .collect(java.util.stream.Collectors.toCollection(FXCollections::observableArrayList));
+
+        tabla.setItems(filtrados);
     }
 
-    // 🖱 DOBLE CLICK
     private void agregarDobleClick(TableView<Entrenador> tabla) {
         tabla.setRowFactory(tv -> {
             TableRow<Entrenador> fila = new TableRow<>();
@@ -190,6 +194,7 @@ public class PantallaEntrenadoresController {
         task.setOnSucceeded(e -> {
             List<Entrenador> lista = task.getValue();
             tablaTodos.setItems(FXCollections.observableArrayList(lista));
+            labelBusquedaTodos.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaTodos, tablaTodos));
         });
 
         task.setOnFailed(e -> {

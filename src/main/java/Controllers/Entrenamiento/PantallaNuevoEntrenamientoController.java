@@ -74,6 +74,7 @@ public class PantallaNuevoEntrenamientoController {
     EntrenadorDAO entDao = new EntrenadorDAO();
     EntrenamientosDAO entrenaDao = new EntrenamientosDAO();
 
+
     @FXML
     void crearNuevoEntrenamiento(ActionEvent event) throws IOException {
 
@@ -82,14 +83,17 @@ public class PantallaNuevoEntrenamientoController {
         Entrenador ent = entrenador.getValue();
         tabEnt.setTipo(tipo.getText());
         tabEnt.setLugar(lugar.getText());
+
         int horaI = Integer.parseInt(HoraI.getValue());
-        int minutoI = Integer.parseInt(HoraI.getValue());
+        int minutoI = Integer.parseInt(minI.getValue()); // ✅ antes usaba HoraI.getValue()
         LocalTime horaInicial = LocalTime.of(horaI, minutoI);
         tabEnt.setHoraInicio(horaInicial);
+
         int horaFin = Integer.parseInt(horaF.getValue());
-        int minutoFin = Integer.parseInt(horaF.getValue());
+        int minutoFin = Integer.parseInt(minF.getValue()); // ✅ antes usaba horaF.getValue()
         LocalTime horaFinal = LocalTime.of(horaFin, minutoFin);
         tabEnt.setHoraFinal(horaFinal);
+
         tabEnt.setFecha(String.valueOf(fecha.getValue()));
         tabEnt.setNombreEntrenador(ent.getNombre());
         tabEnt.setApellidosEntrenador(ent.getApellidos());
@@ -158,14 +162,14 @@ public class PantallaNuevoEntrenamientoController {
         entrenador.getItems().addAll(listarEntrenador);
         ObservableList<String> horas = FXCollections.observableArrayList();
         for (int i = 0; i < 24; i++) {
-            horas.add(String.valueOf(i));
+            horas.add(String.format("%02d", i));
         }
         horaF.getItems().addAll(horas);
         HoraI.getItems().addAll(horas);
         ObservableList<String> minutos = FXCollections.observableArrayList();
 
         for (int i = 0; i < 60; i += 15) {
-            minutos.add(String.valueOf(i));
+            minutos.add(String.format("%02d", i));
         }
         minI.getItems().addAll(minutos);
         minF.getItems().addAll(minutos);

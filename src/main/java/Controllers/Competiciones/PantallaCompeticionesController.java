@@ -2,8 +2,10 @@ package Controllers.Competiciones;
 
 import DAO.CompeticionesDAO;
 import Entidades.TablaCompeticiones;
+import Service.FechaService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,9 +77,33 @@ public class PantallaCompeticionesController {
 
     CompeticionesDAO compeDao = new CompeticionesDAO();
 
+    private final java.util.Map<TableView<TablaCompeticiones>, ObservableList<TablaCompeticiones>> listaOriginal = new java.util.HashMap<>();
+
     @FXML
     void buscarCompeticiones(ActionEvent event) {
+        buscarEnTabla(labelBusquedaTodos, tablaTodos);
+    }
 
+    private void buscarEnTabla(TextField campo, TableView<TablaCompeticiones> tabla) {
+
+        if (!listaOriginal.containsKey(tabla)) {
+            listaOriginal.put(tabla, FXCollections.observableArrayList(tabla.getItems()));
+        }
+
+        String texto = campo.getText().trim().toLowerCase();
+
+        if (texto.isEmpty()) {
+            tabla.setItems(FXCollections.observableArrayList(listaOriginal.get(tabla)));
+            return;
+        }
+
+        ObservableList<TablaCompeticiones> filtrados = listaOriginal.get(tabla).stream()
+                .filter(c -> c.getBoxeadorCompleto().toLowerCase().contains(texto)
+                        || c.getNombreCompeticion().toLowerCase().contains(texto)
+                        || c.getLugarCompe().toLowerCase().contains(texto))
+                .collect(java.util.stream.Collectors.toCollection(FXCollections::observableArrayList));
+
+        tabla.setItems(filtrados);
     }
 
     @FXML
@@ -125,6 +151,38 @@ public class PantallaCompeticionesController {
         stage.setScene(scene);
     }
 
+
+    private void agregarDobleClick(TableView<TablaCompeticiones> tabla) {
+        tabla.setRowFactory(tv -> {
+            TableRow<TablaCompeticiones> fila = new TableRow<>();
+            fila.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !fila.isEmpty()) {
+                    TablaCompeticiones competicionSeleccionada = fila.getItem();
+                    irFichaCompeticion(competicionSeleccionada);
+                }
+            });
+            return fila;
+        });
+    }
+
+    private void irFichaCompeticion(TablaCompeticiones competicion) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    BoxeoApplication.class.getResource("FichaCompeticion.fxml")
+            );
+            Scene scene = new Scene(fxmlLoader.load());
+
+            FichaCompeticionController controller = fxmlLoader.getController();
+            controller.setCompeticion(competicion);
+
+            Stage stage = (Stage) tablaTodos.getScene().getWindow();
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void initialize() {
         todosBoxeador.setCellValueFactory(new PropertyValueFactory<>("boxeadorCompleto"));
@@ -151,6 +209,9 @@ public class PantallaCompeticionesController {
             return new SimpleStringProperty(texto);
         });
 
+        FechaService.aplicarFormatoFecha(todosFechaI);
+        FechaService.aplicarFormatoFecha(todosFechaF);
+
         // 🔄 CARGA EN SEGUNDO PLANO
         Task<List<TablaCompeticiones>> task = new Task<>() {
             @Override
@@ -162,13 +223,14 @@ public class PantallaCompeticionesController {
         task.setOnSucceeded(e -> {
             List<TablaCompeticiones> lista = task.getValue();
             tablaTodos.setItems(FXCollections.observableArrayList(lista));
+            labelBusquedaTodos.textProperty().addListener((obs, oldVal, newVal) -> buscarEnTabla(labelBusquedaTodos, tablaTodos));
         });
 
         task.setOnFailed(e -> {
             task.getException().printStackTrace();
         });
 
-        //agregarDobleClick(tablaTodos);
+        agregarDobleClick(tablaTodos);
 
         new Thread(task).start();
 

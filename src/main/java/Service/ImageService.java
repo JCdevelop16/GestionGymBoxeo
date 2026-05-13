@@ -1,10 +1,10 @@
-package Utils;
+package Service;
 
 import javafx.scene.image.Image;
 
 import java.io.File;
 
-public class ImageUtil {
+public class ImageService {
     private static final String IMG_PATH =
             System.getProperty("user.dir") + "/IMG/";
 

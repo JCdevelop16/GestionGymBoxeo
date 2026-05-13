@@ -96,15 +96,12 @@ public class PantallaNuevoBoxeadorController {
 
         if (file != null) {
             try {
-
-                // 🔥 1. Ruta fija del proyecto (NO depende de Scene Builder ni ejecución)
                 File carpeta = new File(System.getProperty("user.dir"), "IMG");
 
                 if (!carpeta.exists()) {
                     carpeta.mkdirs();
                 }
 
-                // 🔥 2. Validar nombre (MUY IMPORTANTE)
                 String baseNombre = nombre.getText().trim();
 
                 if (baseNombre.isEmpty()) {
@@ -112,21 +109,17 @@ public class PantallaNuevoBoxeadorController {
                     return;
                 }
 
-                // 🔥 3. Extensión original
                 String extension = file.getName()
                         .substring(file.getName().lastIndexOf("."));
 
                 nombreImagen = baseNombre + extension;
 
-                // 🔥 4. Destino real
                 File destino = new File(carpeta, nombreImagen);
 
-                // 🔥 5. Copiar imagen
                 Files.copy(file.toPath(),
                         destino.toPath(),
                         StandardCopyOption.REPLACE_EXISTING);
 
-                // 🔥 6. Mostrar imagen correctamente
                 imagen.setImage(
                         new javafx.scene.image.Image(destino.toURI().toString())
                 );
@@ -185,8 +178,6 @@ public class PantallaNuevoBoxeadorController {
         nuevoBoxeador.setFechaNacimiento(String.valueOf(fechaN.getValue()));
         nuevoBoxeador.setActivo(comboActivo.getValue().equals("Si"));
 
-
-        // 🔥 IMAGEN POR DEFECTO SI NO HAY SELECCIÓN
         if (nombreImagen == null || nombreImagen.isEmpty()) {
             nombreImagen = "sinfoto.png"; // asegúrate de tenerla en tu carpeta IMG
         }
@@ -208,8 +199,6 @@ public class PantallaNuevoBoxeadorController {
     }
 
     private boolean validarCampos() {
-
-        // Nombre y apellidos (solo texto)
         if (!nombre.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
             mostrarError("Nombre no válido");
             return false;
@@ -220,19 +209,16 @@ public class PantallaNuevoBoxeadorController {
             return false;
         }
 
-        // DNI (formato español)
         if (!dni.getText().matches("\\d{8}[A-Za-z]")) {
             mostrarError("DNI no válido");
             return false;
         }
 
-        // Teléfono (9 dígitos)
         if (!telefono.getText().matches("\\d{9}")) {
             mostrarError("Teléfono no válido");
             return false;
         }
 
-        // Peso (número con 2 decimales)
         if (!peso.getText().matches("\\d+(\\.\\d{1,2})?")) {
             mostrarError("Peso no válido");
             return false;

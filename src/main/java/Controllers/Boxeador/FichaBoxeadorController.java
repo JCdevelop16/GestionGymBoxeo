@@ -97,6 +97,9 @@ public class FichaBoxeadorController {
     @FXML
     private Button entrenadoresButton;
 
+    @FXML
+    private Button botonEliminar;
+
     BoxeadorDAO boxeadorDAO = new BoxeadorDAO();
     private Boxeador boxeadorActual;
 
@@ -104,14 +107,12 @@ public class FichaBoxeadorController {
 
         this.boxeadorActual = boxeador;
 
-        // TextFields
         nombre.setText(boxeador.getNombre());
         apellidos.setText(boxeador.getApellidos());
         dni.setText(boxeador.getDni());
         telefono.setText(boxeador.getTelefono());
         peso.setText(String.valueOf(boxeador.getPeso()));
 
-        // DatePicker
         String fechaTexto = boxeador.getFechaNacimiento();
 
         if (fechaTexto != null && !fechaTexto.isEmpty()) {
@@ -128,12 +129,10 @@ public class FichaBoxeadorController {
             fechaN.setValue(fecha);
         }
 
-        // ComboBox
         comboCategoría.setValue(boxeador.getCategoria());
         comboActivo.setValue(boxeador.getActivo() ? "Sí" : "No");
         ComboTipo.setValue(boxeador.getTipoBox());
 
-        // RadioButton (ToggleGroup)
         String genero = boxeador.getGenero();
 
         if (genero != null) {
@@ -146,7 +145,6 @@ public class FichaBoxeadorController {
             }
         }
 
-        // Imagen
         String base = boxeador.getNombre().toLowerCase();
         String[] extensiones = {".jpeg", ".jpg", ".png"};
 
@@ -170,7 +168,6 @@ public class FichaBoxeadorController {
             setImagenDefault();
         }
 
-        // Bloquear edición al cargar
         activarEdicion(false);
     }
 
@@ -206,14 +203,12 @@ public class FichaBoxeadorController {
     private void aplicarEstiloTextFields(boolean activar) {
 
         if (activar) {
-            // modo edición
             nombre.setStyle("-fx-control-inner-background: white;");
             apellidos.setStyle("-fx-control-inner-background: white;");
             dni.setStyle("-fx-control-inner-background: white;");
             telefono.setStyle("-fx-control-inner-background: white;");
             peso.setStyle("-fx-control-inner-background: white;");
         } else {
-            // modo solo lectura (gris o default)
             nombre.setStyle("-fx-control-inner-background: grey;");
             apellidos.setStyle("-fx-control-inner-background: grey;");
             dni.setStyle("-fx-control-inner-background: grey;");
@@ -235,7 +230,6 @@ public class FichaBoxeadorController {
             activarEdicion(false);
             botonEditar.setText("Editar");
 
-            // Obtener valores actuales correctamente
             String generoSeleccionado = null;
             if (grupoGenero.getSelectedToggle() != null) {
                 RadioButton rb = (RadioButton) grupoGenero.getSelectedToggle();
@@ -246,7 +240,6 @@ public class FichaBoxeadorController {
             String categoriaSeleccionada = comboCategoría.getValue();
             String tipoSeleccionado = ComboTipo.getValue();
 
-            // Validar cambios reales
             boolean hayCambios =
                     !nombre.getText().equals(boxeadorActual.getNombre()) ||
                             !apellidos.getText().equals(boxeadorActual.getApellidos()) ||
@@ -264,12 +257,10 @@ public class FichaBoxeadorController {
                 return;
             }
 
-            // Aca se validan los cambios antes de guardar
             if (!validarCampos()) {
                 return;
             }
 
-            // Actualizar objeto
             boxeadorActual.setNombre(nombre.getText());
             boxeadorActual.setApellidos(apellidos.getText());
             boxeadorActual.setDni(dni.getText());
@@ -281,7 +272,6 @@ public class FichaBoxeadorController {
             boxeadorActual.setFechaNacimiento(String.valueOf(fechaN.getValue()));
             boxeadorActual.setActivo(activoSeleccionado.equals("Sí"));
 
-            // Guardar en BD
             boxeadorDAO.actualizarBoxeador(boxeadorActual);
 
 
@@ -298,7 +288,6 @@ public class FichaBoxeadorController {
 
     private boolean validarCampos() {
 
-        // Nombre y apellidos (solo texto)
         if (!nombre.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
             mostrarError("Nombre no válido");
             return false;
@@ -309,19 +298,16 @@ public class FichaBoxeadorController {
             return false;
         }
 
-        // DNI (formato español)
         if (!dni.getText().matches("\\d{8}[A-Za-z]")) {
             mostrarError("DNI no válido");
             return false;
         }
 
-        // Teléfono (9 dígitos)
         if (!telefono.getText().matches("\\d{9}")) {
             mostrarError("Teléfono no válido");
             return false;
         }
 
-        // Peso (número con 2 decimales)
         if (!peso.getText().matches("\\d+(\\.\\d{1,2})?")) {
             mostrarError("Peso no válido");
             return false;
@@ -339,7 +325,6 @@ public class FichaBoxeadorController {
         stage.setScene(scene);
     }
 
-    //NO SE PONE NADA PORQUE SOLO SE PUEDE VOLVER PARA ATRAS
     @FXML
     void irVerCompeticiones(ActionEvent event) {
 
@@ -411,6 +396,28 @@ public class FichaBoxeadorController {
                 mostrarError("Error al cambiar la imagen");
             }
         }
+    }
+
+    @FXML
+    void eliminar(ActionEvent event) {
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION,
+                "¿Eliminar a " + boxeadorActual.getNombre() + " " + boxeadorActual.getApellidos() + "?",
+                ButtonType.YES, ButtonType.NO);
+
+        confirmacion.showAndWait().ifPresent(respuesta -> {
+            if (respuesta == ButtonType.YES) {
+                boxeadorDAO.eliminarBoxeador(boxeadorActual);
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaBoxeadores.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load());
+                    Stage stage = (Stage) botonEliminar.getScene().getWindow();
+                    stage.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    mostrarError("Error al volver a la lista.");
+                }
+            }
+        });
     }
 
     @FXML

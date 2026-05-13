@@ -54,7 +54,7 @@ public class PantallaNuevaCompeticionController {
     private TextField lugar;
 
     @FXML
-    private TextField resultado;
+    private ComboBox<String> resultado;
 
     BoxeadorDAO boxDao = new BoxeadorDAO();
     CompeticionesDAO compeDao = new CompeticionesDAO();
@@ -71,7 +71,7 @@ public class PantallaNuevaCompeticionController {
         tabEntreno.setFechaInico(String.valueOf(fechaI.getValue()));
         tabEntreno.setFechaFinal(String.valueOf(fechaF.getValue()));
         tabEntreno.setTipoCompe(box.getTipoBox());
-        tabEntreno.setResultado(resultado.getText());
+        tabEntreno.setResultado(resultado.getValue());
 
         compeDao.crearCompeticion(tabEntreno, box);
 
@@ -123,6 +123,8 @@ public class PantallaNuevaCompeticionController {
     void initialize() {
         List<Boxeador> listaBoxeador = boxDao.listarBoxeadoresCompetidores();
         boxeador.getItems().addAll(listaBoxeador);
+
+        resultado.getItems().addAll("Sin resultado", "Empate", "Victoria", "Derrota");
     }
 
 }

@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.gestiongymboxeo.BoxeoApplication;
@@ -48,6 +49,9 @@ public class FichaEntrenadorController {
 
     @FXML
     private TextField telefono;
+
+    @FXML
+    private Button botonEliminar;
 
     EntrenadorDAO entrenadorDAO = new EntrenadorDAO();
     private Entrenador entrenadorActual;
@@ -142,7 +146,6 @@ public class FichaEntrenadorController {
 
     private boolean validarCampos() {
 
-        // Nombre y apellidos (solo texto)
         if (!nombre.getText().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
             mostrarError("Nombre no válido");
             return false;
@@ -153,13 +156,11 @@ public class FichaEntrenadorController {
             return false;
         }
 
-        // DNI (formato español)
         if (!dni.getText().matches("\\d{8}[A-Za-z]")) {
             mostrarError("DNI no válido");
             return false;
         }
 
-        // Teléfono (9 dígitos)
         if (!telefono.getText().matches("\\d{9}")) {
             mostrarError("Teléfono no válido");
             return false;
@@ -173,7 +174,7 @@ public class FichaEntrenadorController {
 
         return true;
     }
-    //NO SE PONE NADA PORQUE SOLO SE PUEDE VOLVER PARA ATRAS
+
     @FXML
     void irVerBoxeadores(ActionEvent event) {
 
@@ -201,6 +202,27 @@ public class FichaEntrenadorController {
     @FXML
     void volver(ActionEvent event) throws IOException {
         irVerEntrenadores(event);
+    }
+
+    @FXML
+    void eliminar(ActionEvent event) {
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION,
+                "¿Eliminar a " + entrenadorActual.getNombre() + " " + entrenadorActual.getApellidos() + "?",
+                ButtonType.YES, ButtonType.NO);
+
+        confirmacion.showAndWait().ifPresent(respuesta -> {
+            if (respuesta == ButtonType.YES) {
+                entrenadorDAO.eliminarEntrenador(entrenadorActual);
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(BoxeoApplication.class.getResource("PantallaEntrenadores.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load());
+                    Stage stage = (Stage) botonEliminar.getScene().getWindow();
+                    stage.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 }
