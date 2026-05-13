@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Entrenador.PantallaNuevoEntrenadorController">
+   <children>
+      <VBox spacing="20.0" style="-fx-background-color: #1A1A1A;">
+         <children>
+            <AnchorPane prefHeight="262.0" prefWidth="255.0" style="-fx-background-color: C0392B;">
+               <children>
+                  <ImageView fitHeight="161.0" fitWidth="196.0" layoutX="32.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="31.0">
+                     <image>
+                        <Image url="@../../../IMG/LogoBoxGym.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Button fx:id="boxeadoresButton" mnemonicParsing="false" onAction="#irVerBoxeadores" prefHeight="61.0" prefWidth="259.0" style="-fx-background-color: transparent;" text="Boxeadores" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="entrenadoresButton" mnemonicParsing="false" onAction="#irVerEntrenadores" prefHeight="61.0" prefWidth="255.0" style="-fx-background-color: C0392B;" text="Entrenadores" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="entrenamientoButton" mnemonicParsing="false" onAction="#irVerEntrenamientos" prefHeight="61.0" prefWidth="258.0" style="-fx-background-color: transparent;" text="Entrenamientos" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="competicionesButton" mnemonicParsing="false" onAction="#irVerCompeticiones" prefHeight="61.0" prefWidth="256.0" style="-fx-background-color: transparent;" text="Competiciones" textFill="WHITESMOKE">
+               <font>
+                  <Font name="Bradley Hand ITC" size="28.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="30.0" style="-fx-background-color: #2C2C2C;" HBox.hgrow="ALWAYS">
+         <children>
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="88.0" prefWidth="390.0" text="Nuevo Entreador" textFill="WHITESMOKE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Bradley Hand ITC" size="56.0" />
+               </font>
+            </Label>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="738.0" prefWidth="688.0" spacing="20.0">
+               <children>
+                  <Label prefHeight="49.0" prefWidth="320.0" text="Datos del Entrenador" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <GridPane prefHeight="500.0" prefWidth="648.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="160.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.0" minWidth="10.0" prefWidth="528.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label prefHeight="24.0" prefWidth="71.0" text="Nombre:" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nombre" prefHeight="25.0" prefWidth="50.0" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="40.0" right="40.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label prefHeight="24.0" prefWidth="71.0" text="Apellidos:" textFill="WHITE" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="apellidos" prefHeight="25.0" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="40.0" right="40.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label prefHeight="24.0" prefWidth="130.0" text="DNI:" textFill="WHITE" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="dni" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="40.0" right="40.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label prefHeight="24.0" prefWidth="130.0" text="Telefono:" textFill="WHITE" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="telefono" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="40.0" right="40.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label prefHeight="24.0" prefWidth="130.0" text="Especialidad" textFill="WHITE" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="especialidad" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="40.0" right="40.0" />
+                           </GridPane.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="60.0" right="60.0" />
+                     </VBox.margin>
+                  </GridPane>
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="688.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="botonVolver" mnemonicParsing="false" onAction="#volver" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Volver" textFill="WHITESMOKE" />
+                        <Button fx:id="botonGuardar" mnemonicParsing="false" onAction="#crearNuevoEntrenador" style="-fx-background-color: #C0392B; -fx-background-radius: 11px;" text="Guardar" textFill="WHITESMOKE" />
+                     </children>
+                     <padding>
+                        <Insets left="150.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="100.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</HBox>

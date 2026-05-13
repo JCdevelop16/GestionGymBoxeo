@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+      style="-fx-background-color: #3C3C3C;"
+      xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controllers.LoginController">
+   <children>
+      <VBox alignment="CENTER" prefWidth="350.0" spacing="15.0"
+            style="-fx-background-color: #2C2C2C;">
+         <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </padding>
+         <children>
+            <Label text="CLUB BOXING" textFill="WHITE" alignment="CENTER"
+                   maxWidth="1.7976931348623157E308">
+               <font>
+                  <Font name="Bradley Hand ITC" size="36.0" />
+               </font>
+            </Label>
+            <Label text="Usuario" textFill="WHITE">
+               <font><Font size="14.0" /></font>
+            </Label>
+            <TextField fx:id="usuario" promptText="Usuario" />
+            <Label text="Contraseña" textFill="WHITE">
+               <font><Font size="14.0" /></font>
+            </Label>
+            <PasswordField fx:id="contraseña" promptText="Contraseña" />
+            <Label fx:id="mensajeError" textFill="#cc0000" text=""
+                   maxWidth="1.7976931348623157E308" alignment="CENTER">
+               <font><Font size="12.0" /></font>
+            </Label>
+            <Button text="Entrar" onAction="#login" maxWidth="1.7976931348623157E308"
+                    style="-fx-background-color: #cc0000; -fx-text-fill: white;
+                           -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 8px;" />
+         </children>
+      </VBox>
+   </children>
+</HBox>
