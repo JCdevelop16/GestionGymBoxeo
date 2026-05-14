@@ -79,22 +79,15 @@ public class FichaEntrenadorController {
     }
 
     private void aplicarEstiloTextFields(boolean activar) {
+        String estilo = activar
+                ? "-fx-control-inner-background: white; -fx-text-fill: black;"
+                : "-fx-control-inner-background: #4A4A4A; -fx-text-fill: #ECECEC;";
 
-        if (activar) {
-            // modo edición
-            nombre.setStyle("-fx-control-inner-background: white;");
-            apellidos.setStyle("-fx-control-inner-background: white;");
-            dni.setStyle("-fx-control-inner-background: white;");
-            telefono.setStyle("-fx-control-inner-background: white;");
-            especialidad.setStyle("-fx-control-inner-background: white;");
-        } else {
-            // modo solo lectura (gris o default)
-            nombre.setStyle("-fx-control-inner-background: grey;");
-            apellidos.setStyle("-fx-control-inner-background: grey;");
-            dni.setStyle("-fx-control-inner-background: grey;");
-            telefono.setStyle("-fx-control-inner-background: grey;");
-            especialidad.setStyle("-fx-control-inner-background: grey;");
-        }
+        nombre.setStyle(estilo);
+        apellidos.setStyle(estilo);
+        dni.setStyle(estilo);
+        telefono.setStyle(estilo);
+        especialidad.setStyle(estilo);
     }
 
     @FXML

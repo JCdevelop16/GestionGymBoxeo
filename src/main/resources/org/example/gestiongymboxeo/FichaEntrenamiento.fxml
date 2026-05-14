@@ -39,7 +39,7 @@
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
             </Button>
-            <Button fx:id="entrenamientoButton" mnemonicParsing="false" onAction="#irVerEntrenamientos" prefHeight="61.0" prefWidth="258.0" style="-fx-background-color: C0392B;" text="Entrenamientos" textFill="WHITESMOKE">
+            <Button fx:id="entrenamientoButton" mnemonicParsing="false" onAction="#irVerEntrenamientos" prefHeight="61.0" prefWidth="258.0" style="-fx-background-color: #C0392B;" text="Entrenamientos" textFill="WHITESMOKE">
                <font>
                   <Font name="Bradley Hand ITC" size="28.0" />
                </font>
@@ -86,7 +86,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tipo" editable="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: grey;" GridPane.columnIndex="1">
+                        <TextField fx:id="tipo" editable="false" prefHeight="25.0" prefWidth="50.0" style="-fx-control-inner-background: #4A4A4A; -fx-text-fill: #ECECEC;" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="40.0" right="40.0" />
                            </GridPane.margin>
@@ -96,7 +96,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="lugar" editable="false" prefHeight="25.0" prefWidth="320.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="lugar" editable="false" prefHeight="25.0" prefWidth="320.0" style="-fx-control-inner-background: #4A4A4A; -fx-text-fill: #ECECEC;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="40.0" right="40.0" />
                            </GridPane.margin>
@@ -136,37 +136,37 @@
                               <Insets left="40.0" />
                            </padding>
                         </HBox>
-                        <DatePicker fx:id="fecha" disable="true" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <DatePicker fx:id="fecha" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets left="40.0" />
                            </GridPane.margin>
                         </DatePicker>
-                        <ComboBox fx:id="boxeador" disable="true" prefHeight="25.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                           <GridPane.margin>
-                              <Insets left="40.0" />
-                           </GridPane.margin>
-                        </ComboBox>
-                        <ComboBox fx:id="entrenador" disable="true" prefHeight="25.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <GridPane.margin>
-                              <Insets left="40.0" />
-                           </GridPane.margin>
-                        </ComboBox>
                         <Label prefHeight="24.0" prefWidth="144.0" text="Entrenador:" textFill="WHITE" GridPane.rowIndex="5">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
+                        <ComboBox fx:id="entrenador" disable="true" prefHeight="25.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="40.0" />
+                           </GridPane.margin>
+                        </ComboBox>
                         <Label prefHeight="24.0" prefWidth="144.0" text="Boxeador:" textFill="WHITE" GridPane.rowIndex="6">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
+                        <ComboBox fx:id="boxeador" disable="true" prefHeight="25.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets left="40.0" />
+                           </GridPane.margin>
+                        </ComboBox>
                         <Label prefHeight="24.0" prefWidth="144.0" text="Estado" textFill="WHITE" GridPane.rowIndex="7">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="estado" editable="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: grey;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <TextField fx:id="estado" editable="false" prefHeight="25.0" prefWidth="50.0" style="-fx-control-inner-background: #4A4A4A; -fx-text-fill: #ECECEC;" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <GridPane.margin>
                               <Insets left="40.0" right="40.0" />
                            </GridPane.margin>

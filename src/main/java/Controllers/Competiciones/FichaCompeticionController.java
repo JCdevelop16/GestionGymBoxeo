@@ -22,7 +22,7 @@ public class FichaCompeticionController {
     private Button botonVolver;
 
     @FXML
-    private ComboBox<?> boxeador;
+    private ComboBox<String> boxeador;
 
     @FXML
     private Button boxeadoresButton;
@@ -84,7 +84,9 @@ public class FichaCompeticionController {
         categoria.setText(tablaCompeticiones.getCategoria());
         resultado.setValue(tablaCompeticiones.getResultado());
         estado.setText(tablaCompeticiones.getConfirmado() != null && tablaCompeticiones.getConfirmado() ? "Confirmado" : "No confirmado");
-        boxeador.setPromptText(tablaCompeticiones.getBoxeadorCompleto());
+        boxeador.getItems().clear();
+        boxeador.getItems().add(tablaCompeticiones.getBoxeadorCompleto());
+        boxeador.setValue(tablaCompeticiones.getBoxeadorCompleto());
 
         if (tablaCompeticiones.getFechaInico() != null)
             fechaI.setValue(LocalDate.parse(tablaCompeticiones.getFechaInico()));
@@ -104,18 +106,17 @@ public class FichaCompeticionController {
     }
 
     private void aplicarEstiloTextFields(boolean activar) {
-        if (activar) {
-            competicion.setStyle("-fx-control-inner-background: white;");
-            lugar.setStyle("-fx-control-inner-background: white;");
-            tipo.setStyle("-fx-control-inner-background: white;");
-            resultado.setStyle("-fx-control-inner-background: white;");
-        } else {
-            competicion.setStyle("-fx-control-inner-background: grey;");
-            lugar.setStyle("-fx-control-inner-background: grey;");
-            tipo.setStyle("-fx-control-inner-background: grey;");
-            resultado.setStyle("-fx-control-inner-background: grey;");
-        }
+        String estilo = activar
+                ? "-fx-control-inner-background: white; -fx-text-fill: black;"
+                : "-fx-control-inner-background: #4A4A4A; -fx-text-fill: #ECECEC;";
+
+        competicion.setStyle(estilo);
+        lugar.setStyle(estilo);
+        tipo.setStyle(estilo);
+        resultado.setStyle(estilo);
     }
+
+
 
     @FXML
     void irVerBoxeadores(ActionEvent event) throws IOException {

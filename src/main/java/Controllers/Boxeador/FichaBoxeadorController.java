@@ -201,20 +201,15 @@ public class FichaBoxeadorController {
     }
 
     private void aplicarEstiloTextFields(boolean activar) {
+        String estilo = activar
+                ? "-fx-control-inner-background: white; -fx-text-fill: black;"
+                : "-fx-control-inner-background: #4A4A4A; -fx-text-fill: #ECECEC;";
 
-        if (activar) {
-            nombre.setStyle("-fx-control-inner-background: white;");
-            apellidos.setStyle("-fx-control-inner-background: white;");
-            dni.setStyle("-fx-control-inner-background: white;");
-            telefono.setStyle("-fx-control-inner-background: white;");
-            peso.setStyle("-fx-control-inner-background: white;");
-        } else {
-            nombre.setStyle("-fx-control-inner-background: grey;");
-            apellidos.setStyle("-fx-control-inner-background: grey;");
-            dni.setStyle("-fx-control-inner-background: grey;");
-            telefono.setStyle("-fx-control-inner-background: grey;");
-            peso.setStyle("-fx-control-inner-background: grey;");
-        }
+        nombre.setStyle(estilo);
+        apellidos.setStyle(estilo);
+        dni.setStyle(estilo);
+        telefono.setStyle(estilo);
+        peso.setStyle(estilo);
     }
 
     @FXML
@@ -363,27 +358,23 @@ public class FichaBoxeadorController {
 
             try {
 
-                //Carpeta real del proyecto
                 File carpeta = new File(System.getProperty("user.dir"), "IMG");
 
                 if (!carpeta.exists()) {
                     carpeta.mkdirs();
                 }
 
-                //Nombre seguro
-                String nombreArchivo = boxeadorActual.getId()
-                        + ".jpeg"; // o .jpg según prefieras
+                String nombreArchivo = boxeadorActual.getNombre()
+                        + ".jpeg";
 
                 File destino = new File(carpeta, nombreArchivo);
 
-                //Copiar y sobrescribir
                 Files.copy(
                         file.toPath(),
                         destino.toPath(),
                         StandardCopyOption.REPLACE_EXISTING
                 );
 
-                //Guardar en BD
                 boxeadorActual.setFotoUrl(nombreArchivo);
 
                 //Mostrar imagen correctamente
@@ -445,11 +436,6 @@ public class FichaBoxeadorController {
                 "Amateur",
                 "Profesional"
         );
-
-        seleccionHombre.setToggleGroup(grupoGenero);
-        seleccionMujer.setToggleGroup(grupoGenero);
-
-
 
     }
 

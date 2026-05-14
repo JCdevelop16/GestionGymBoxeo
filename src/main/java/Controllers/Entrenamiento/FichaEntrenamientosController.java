@@ -131,29 +131,20 @@ public class FichaEntrenamientosController {
     }
 
     private void aplicarEstiloTextFields(boolean activar) {
+        String estilo = activar
+                ? "-fx-control-inner-background: white; -fx-text-fill: black;"
+                : "-fx-control-inner-background: #4A4A4A; -fx-text-fill: #ECECEC;";
 
-        if (activar) {
-            // modo edición
-            tipo.setStyle("-fx-control-inner-background: white;");
-            lugar.setStyle("-fx-control-inner-background: white;");
-            HoraI.setStyle("-fx-control-inner-background: white;");
-            minI.setStyle("-fx-control-inner-background: white;");
-            horaF.setStyle("-fx-control-inner-background: white;");
-            minF.setStyle("-fx-control-inner-background: white;");
-            fecha.setStyle("-fx-control-inner-background: white;");
-            entrenador.setStyle("-fx-control-inner-background: white;");
-        } else {
-            // modo solo lectura (gris o default)
-            tipo.setStyle("-fx-control-inner-background: grey;");
-            lugar.setStyle("-fx-control-inner-background: grey;");
-            HoraI.setStyle("-fx-control-inner-background: grey;");
-            minI.setStyle("-fx-control-inner-background: grey;");
-            horaF.setStyle("-fx-control-inner-background: grey;");
-            minF.setStyle("-fx-control-inner-background: grey;");
-            fecha.setStyle("-fx-control-inner-background: grey;");
-            entrenador.setStyle("-fx-control-inner-background: grey;");
 
-        }
+        tipo.setStyle(estilo);
+        lugar.setStyle(estilo);
+        HoraI.setStyle(estilo);
+        minI.setStyle(estilo);
+        horaF.setStyle(estilo);
+        minF.setStyle(estilo);
+        fecha.setStyle(estilo);
+        entrenador.setStyle(estilo);
+
     }
 
     @FXML
